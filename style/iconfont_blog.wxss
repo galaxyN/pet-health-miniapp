@@ -1,0 +1,75 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4964805 */
+  src: url('iconfont.woff2?t=1751959917743') format('woff2'),
+       url('iconfont.woff?t=1751959917743') format('woff'),
+       url('iconfont.ttf?t=1751959917743') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-home:before {
+  content: "\e6ad";
+}
+
+.icon-notice:before {
+  content: "\e60a";
+}
+
+.icon-calendar_ok:before {
+  content: "\e88e";
+}
+
+.icon-pets:before {
+  content: "\e61a";
+}
+
+.icon-like:before {
+  content: "\e707";
+}
+
+.icon-like1:before {
+  content: "\e6eb";
+}
+
+.icon-sigongge:before {
+  content: "\e66e";
+}
+
+.icon-list:before {
+  content: "\e65a";
+}
+
+.icon-github:before {
+  content: "\e6a4";
+}
+
+.icon-weibo:before {
+  content: "\e882";
+}
+
+.icon-email:before {
+  content: "\e600";
+}
+
+.icon-call_fill:before {
+  content: "\e7c2";
+}
+
+.icon-wechat:before {
+  content: "\e69b";
+}
+
+.icon-eye:before {
+  content: "\e78f";
+}
+
+.icon-search:before {
+  content: "\e67d";
+}
+
