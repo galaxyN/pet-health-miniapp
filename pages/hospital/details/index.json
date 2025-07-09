@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "商品详情",
+  "navigationBarTitleText": "宠物医院",
   "usingComponents": {
     "t-image": "/components/webp-image/index",
     "t-tag": "tdesign-miniprogram/tag/tag",

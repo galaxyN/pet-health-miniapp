@@ -1,45 +1,26 @@
-<view style="text-align: center; color: #b9b9b9" wx:if="{{pageLoading}}">
-  <t-loading theme="circular" size="40rpx" text="加载中..." inherit-color />
-</view>
-<view class="home-page-header">
-  <view class="search" bind:tap="navToSearchPage">
-    <t-search
-      t-class-input="t-search__input"
-      t-class-input-container="t-search__input-container"
-      placeholder=""
-      leftIcon=""
-      disabled
-    >
-      <t-icon slot="left-icon" prefix="wr" name="search" size="40rpx" color="#bbb" />
-    </t-search>
+<view class="container">
+  <!-- 顶部问候语 -->
+  <view class="greeting">
+    <text>Hello，</text>
+    <text>欢迎来到PawNest</text>
   </view>
-</view>
-<view class="home-page-container">
-  <view class="pet-box">
-    <text> choose your pet </text>
-    <view class="pet-imgs">
-      <view class="add-btn">
-        <image src="/images/add.png" mode=""/>
+  
+  <!-- 宠物档案卡片 -->
+  <view class="pet-card">
+    <view class="card-head">我的宠物档案</view>
+    <view class="card-main">
+      <image class="pet-avatar" src="/images/cat-1.jpeg"></image>
+      <view class="pet-info">
+        <view class="pet-name">Coni</view>
+        <view class="pet-detail">马尔济斯，4岁6个月</view>
       </view>
-      <image src="/images/cat-1.jpeg" mode=""/>
-      <image src="/images/dog-1.jpeg" mode=""/>
-      <image src="/images/cat-1.jpeg" mode=""/>
+      <view class="add-icon">+</view>
     </view>
   </view>
-  <view class="image-box"> 
-    <image class="market-img" src="/images/market.png" mode=""/>
+  
+  <!-- 功能模块 -->
+  <view class="function-modules">
+    <image src="/images/yiyuanyuyue.png" bind:tap="goToHospital" />
+    <image src="/images/meirongyuanyuyue.png" />
   </view>
-  <view class="home-page-cards">
-    <view class="card">
-      <!-- <image src="" mode=""/> -->
-      <text>门诊预约</text>
-      <!-- <image src="" mode=""/> -->
-    </view>
-    <view class="card">
-      <!-- <image src="" mode=""/> -->
-      <text>美容预约</text>
-      <!-- <image src="" mode=""/> -->
-    </view>
-  </view>
-  <t-toast id="t-toast" />
 </view>
