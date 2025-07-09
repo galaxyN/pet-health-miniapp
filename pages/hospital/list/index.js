@@ -32,8 +32,9 @@ Page({
   // 预约按钮点击事件
   handleAppointment: function(e) {
     const hospitalId = e.currentTarget.dataset.id;
+    console.log(hospitalId);
     wx.navigateTo({
-      url: `pages/hospital/appointment/index?id=${hospitalId}`
+      url: `../details/index?id=${hospitalId}`
     });
   }
 })

@@ -1,0 +1,149 @@
+/* 页面容器 */
+.container {
+  padding-bottom: 80px;
+  background-color: #f8f8f8;
+}
+
+/* 头部信息 */
+.header {
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.back-btn image {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.hospital-card {
+  display: flex;
+  padding: 15px;
+  position: relative;
+  margin-bottom: 40rpx;
+}
+
+.hospital-icon {
+  width: 152rpx;
+  height: 152rpx;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.hospital-info {
+  margin-top: 10px;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.rating image {
+  width: 15px;
+  height: 15px;
+  margin-right: 2px;
+}
+
+.score {
+  font-size: 14px;
+  color: #f5a623;
+  margin-left: 5px;
+}
+
+/* 联系信息 */
+.contact-info {
+  padding: 15px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.item view {
+  height: 16px;
+  margin-right: 8px;
+  margin-bottom: 25rpx;
+}
+
+.item text {
+  font-size: 14px;
+  color: #8E8E8E;
+}
+
+/* 评论区域 */
+.comments {
+  padding: 15px;
+}
+.head{
+  display: flex;
+  justify-content: space-between;
+}
+.title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+.more{
+  color: #2D81FF;
+}
+
+.comment-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #fff;
+  border-radius: 20rpx;
+  box-shadow: 0 -1px 5px rgba(0,0,0,0.05);
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.username {
+  font-size: 14px;
+  color: #333;
+}
+
+.date {
+  font-size: 12px;
+  color: #999;
+}
+
+.content {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* 预约按钮 */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 15px;
+  box-shadow: 0 -1px 5px rgba(0,0,0,0.05);
+}
+
+.appointment-btn {
+  background-color: #333;
+  color: #fff;
+  font-size: 16px;
+  height: 44px;
+  line-height: 44px;
+  border-radius: 4px;
+}

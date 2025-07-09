@@ -1,0 +1,36 @@
+.calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.weekdays {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.days {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.day {
+    width: 14.28%;
+    text-align: center;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+
+.selected {
+    background-color: #007aff;
+    color: white;
+    border-radius: 50%;
+}

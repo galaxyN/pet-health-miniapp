@@ -25,7 +25,8 @@
         "search/index",
         "result/index",
         "comments/index",
-        "comments/create/index"
+        "comments/create/index",
+        "appointment/index"
       ]
     },
     {

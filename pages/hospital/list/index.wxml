@@ -15,7 +15,7 @@
           <view class="rating">
             <block wx:for="{{item.stars}}" wx:key="*this">
               <image 
-                src="{{item === 1 ? '../resource/hospital/star-full.png' : (item === 0.5 ? '../resource/hospital/star=half.png' : '/../resource/hospital/star.png')}}" 
+                src="{{item === 1 ? '../resource/hospital/star-full.png' : (item === 0.5 ? '../resource/hospital/star-half.png' : '/../resource/hospital/star.png')}}" 
               />
             </block>
             <text class="rating-text">{{item.rating}}分</text>

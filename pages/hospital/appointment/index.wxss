@@ -1,0 +1,156 @@
+/* 页面容器 */
+.container {
+  padding-bottom: 100px;
+  background-color: #fff;
+}
+
+/* 导航栏 */
+.nav-bar {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.back-btn image {
+  width: 20px;
+  height: 20px;
+}
+
+.title {
+  flex: 1;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* 日期选择 */
+.date-section {
+  padding: 15px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.month-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.month {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.arrow {
+  width: 20px;
+  height: 20px;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.day.selected {
+  background-color: #1989fa;
+}
+
+.day.selected text {
+  color: #fff;
+}
+
+/* 时间选择 */
+.time-section {
+  padding: 15px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.section-title {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.time-slots {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.slot {
+  padding: 8px 0;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.slot.selected {
+  background-color: #1989fa;
+  color: #fff;
+  border-color: #1989fa;
+}
+
+/* 宠物选择 */
+.pet-section {
+  padding: 15px;
+}
+
+.pet-selector {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.pet-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.pet-info {
+  flex: 1;
+}
+
+.pet-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.pet-breed {
+  font-size: 14px;
+  color: #666;
+}
+
+/* 确认按钮 */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+}
+
+.confirm-btn {
+  background-color: #333;
+  color: #fff;
+  font-size: 16px;
+  height: 44px;
+  line-height: 44px;
+  border-radius: 4px;
+}
