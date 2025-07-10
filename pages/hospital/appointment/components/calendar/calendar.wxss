@@ -7,6 +7,11 @@
 .header {
     font-size: 18px;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 20rpx;
 }
 
 .weekdays {
@@ -23,9 +28,10 @@
 }
 
 .day {
-    width: 14.28%;
+    width: 100rpx;
+    height: 100rpx;
+    line-height: 100rpx;
     text-align: center;
-    padding: 10px 0;
     box-sizing: border-box;
 }
 

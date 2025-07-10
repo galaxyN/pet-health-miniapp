@@ -1,6 +1,7 @@
 Component({
     properties: {},
     data: {
+        date: null,
         year: new Date().getFullYear(),
         month: new Date().getMonth() + 1,
         dateArray: []
@@ -15,8 +16,11 @@ Component({
         },
     },
     methods: {
-        initCalendar: function() {
+        initCalendar: function() {  
             const now = new Date();
+            this.setData({
+                date: now
+            })
             const year = now.getFullYear();
             const month = now.getMonth() + 1; // getMonth 返回的是0-11
             const firstDayOfMonth = new Date(year, month - 1, 1);
@@ -44,16 +48,61 @@ Component({
             const day = e.currentTarget.dataset.day;
             if (!day) return;
 
-            const updatedDays = this.data.days.map(item => ({
+            const updatedDays = this.data.dateArray.map(item => ({
                 ...item,
                 className: item.day === day ? 'selected' : ''
             }));
 
             this.setData({
-                days: updatedDays,
+                dateArray: updatedDays,
                 selectedDay: day
             });
-        }
+        },
+
+        updateCalendar: function() {  
+            const now = this.data.date;
+            const year = now.getFullYear();
+            const month = now.getMonth() + 1; // getMonth 返回的是0-11
+            const firstDayOfMonth = new Date(year, month - 1, 1);
+            const lastDateOfMonth = new Date(year, month, 0).getDate();
+            const firstDayOfWeek = firstDayOfMonth.getDay(); // getDay 返回的是0-6
+
+            let daysArray = [];
+            for (let i = 1; i <= lastDateOfMonth; i++) {
+                daysArray.push({ day: i, className: '' });
+            }
+
+            // 填充上个月的最后几天
+            for (let i = 0; i < firstDayOfWeek - 1; i++) {
+                daysArray.unshift({ day: '', className: 'inactive' });
+            }
+
+            this.setData({
+                year: year,
+                month: month,
+                dateArray: daysArray
+            });
+        },
+
+        prevMonth: function() {
+            const date = this.data.date;
+            date.setMonth(date.getMonth() - 1);
+            this.setData({
+                date: date
+            },() => {
+                this.updateCalendar();
+            })
+        },
+
+        nextMonth: function() {
+             const date = this.data.date;
+            date.setMonth(date.getMonth() + 1);
+            this.setData({
+                date: date
+            },() => {
+                this.updateCalendar();
+            })
+        },
     }
     
 });
