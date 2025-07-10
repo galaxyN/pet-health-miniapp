@@ -1,8 +1,8 @@
 <view class="calendar">
     <view class="header">
-        <button bind:tap="prevMonth">上个月</button>
+        <image src="../../../resource/Circle Left.png" bindtap="prevMonth" />
         <text>{{year}}年{{month}}月</text>
-        <button bind:tap="nextMonth">下个月</button>
+        <image src="../../../resource/Circle Right.png" bindtap="nextMonth" />
     </view>
     <view class="weekdays">
         <text>一</text>

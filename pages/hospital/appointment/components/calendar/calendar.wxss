@@ -6,12 +6,15 @@
 
 .header {
     font-size: 18px;
-    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    padding: 0 20rpx;
+    width: 94%;
+    margin: 10px auto 20px;
+}
+.header image{
+    width: 52rpx;
+    height: 52rpx;
 }
 
 .weekdays {
