@@ -1,3 +1,4 @@
+const dayjs = require("dayjs");
 Component({
     properties: {},
     data: {
@@ -31,11 +32,15 @@ Component({
             for (let i = 1; i <= lastDateOfMonth; i++) {
                 daysArray.push({ day: i, className: '' });
             }
-
+            const tempDate = dayjs(firstDayOfMonth)
+            
             // 填充上个月的最后几天
             for (let i = 0; i < firstDayOfWeek - 1; i++) {
-                daysArray.unshift({ day: '', className: 'inactive' });
+                const day = tempDate.subtract(i+1,'day')
+                daysArray.unshift({ day: day.date(), className: 'inactive' });
             }
+
+            // 填充下个月的前几天
 
             this.setData({
                 year: year,
@@ -71,10 +76,11 @@ Component({
             for (let i = 1; i <= lastDateOfMonth; i++) {
                 daysArray.push({ day: i, className: '' });
             }
-
+            const tempDate = dayjs(firstDayOfMonth)
             // 填充上个月的最后几天
             for (let i = 0; i < firstDayOfWeek - 1; i++) {
-                daysArray.unshift({ day: '', className: 'inactive' });
+                const day = tempDate.subtract(i+1,'day')
+                daysArray.unshift({ day: day.date(), className: 'inactive' });
             }
 
             this.setData({
