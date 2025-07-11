@@ -41,6 +41,14 @@ Component({
             }
 
             // 填充下个月的前几天
+            const lastDate = dayjs(new Date(year, month, 0))
+            const lastDayOfWeek = lastDate.day();
+            if(lastDayOfWeek < 6){
+                for (let i = 1; i <= 6 - lastDayOfWeek; i++) {
+                    const day = lastDate.add(i,'day')
+                    daysArray.push({ day: day.date(), className: 'inactive' });
+                }
+            }
 
             this.setData({
                 year: year,
@@ -81,6 +89,16 @@ Component({
             for (let i = 0; i < firstDayOfWeek - 1; i++) {
                 const day = tempDate.subtract(i+1,'day')
                 daysArray.unshift({ day: day.date(), className: 'inactive' });
+            }
+
+            // 填充下个月的前几天
+            const lastDate = dayjs(new Date(year, month, 0))
+            const lastDayOfWeek = lastDate.day();
+            if(lastDayOfWeek > 0 && lastDayOfWeek < 6){
+                for (let i = 1; i <= 6 - lastDayOfWeek; i++) {
+                    const day = lastDate.add(i,'day')
+                    daysArray.push({ day: day.date(), className: 'inactive' });
+                }
             }
 
             this.setData({
