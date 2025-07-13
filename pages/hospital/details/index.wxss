@@ -131,19 +131,16 @@
 
 /* 预约按钮 */
 .footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 10px 15px;
-  box-shadow: 0 -1px 5px rgba(0,0,0,0.05);
+    width: 80%;
+    margin: 40px auto 0;
+    padding: 10px 15px;
 }
 
 .appointment-btn {
   background-color: #333;
   color: #fff;
   font-size: 16px;
-  height: 44px;
-  line-height: 44px;
-  border-radius: 4px;
+  height: 54px;
+  line-height: 54px;
+  border-radius: 10px;
 }
