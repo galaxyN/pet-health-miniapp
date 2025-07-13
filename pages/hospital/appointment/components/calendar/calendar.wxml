@@ -15,7 +15,9 @@
     </view>
     <view class="days">
         <block wx:for="{{dateArray}}" wx:key="index">
-            <view class="day {{item.className}}" data-day="{{item.day}}" bindtap="selectDay">{{item.day}}</view>
+            <view class="day-box">
+                <view class="day {{item.className}}" data-day="{{item.day}}" bindtap="selectDay">{{item.day}}</view>
+            </view>
         </block>
     </view>
 </view>

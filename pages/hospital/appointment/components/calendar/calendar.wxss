@@ -2,6 +2,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: #fff;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 15px;
 }
 
 .header {
@@ -9,8 +13,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 94%;
-    margin: 10px auto 20px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 10px;
+    margin: 10px 0;
 }
 .header image{
     width: 52rpx;
@@ -20,8 +26,12 @@
 .weekdays {
     display: flex;
     width: 100%;
-    justify-content: space-around;
     margin-bottom: 10px;
+    justify-content: space-around;
+}
+.weekdays text{
+    width: 90rpx;
+    text-align: center;
 }
 
 .days {
@@ -30,12 +40,21 @@
     width: 100%;
 }
 
+.days .day-box{
+    width: 14.28%;
+    text-align: center;
+}
+
 .day {
-    width: 100rpx;
-    height: 100rpx;
-    line-height: 100rpx;
+    width: 80rpx;
+    height: 80rpx;
+    line-height: 80rpx;
     text-align: center;
     box-sizing: border-box;
+}
+
+.inactive{
+    color: #999;
 }
 
 .selected {

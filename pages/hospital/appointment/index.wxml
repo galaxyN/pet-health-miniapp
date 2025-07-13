@@ -1,7 +1,6 @@
 <view class="container">
   <!-- 日期选择 -->
   <calendar></calendar>
-  
   <!-- 时间选择 -->
   <view class="time-section">
     <text class="section-title">时间</text>
