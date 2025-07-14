@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/login/index",
-    "pages/login/guide",
     "pages/home/home",
+    "pages/login/guide",
+    "pages/usercenter/index",
     "pages/comments/index",
     "pages/comments/addComment/index",
     "pages/category/index",
     "pages/cart/index",
-    "pages/usercenter/index",
     "pages/login/register/register"
   ],
   "subpackages": [
