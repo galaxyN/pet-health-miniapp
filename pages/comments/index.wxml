@@ -1,0 +1,51 @@
+<!-- pages/comments/index.wxml -->
+<view class="comments-page">
+  <!-- 评论筛选标签 -->
+  <view class="filter-tabs">
+    <view class="tab-item {{activeTab === '最新' ? 'active' : ''}}" bindtap="switchTab" data-tab="最新">
+      最新
+    </view>
+    <view class="tab-item {{activeTab === '好评' ? 'active' : ''}}" bindtap="switchTab" data-tab="好评">
+      好评
+    </view>
+  </view>
+  <!-- 评分概览 -->
+  <view class="score-overview">
+    <view class="score-main">
+      <view class="score-value">4.6</view>
+      <view class="score-bars">
+        <block wx:for="{{scoreList}}" wx:key="index">
+          <view class="score-bar-box">
+            <text class="score-tag">{{item.score}}</text>
+            <view class="score-bar">
+              <view class="score-bar-fill" style="width: {{item.count / total * 100}}%"></view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="comment-count">{{total}} 条评论</view>
+  </view>
+  <!-- 评论列表 -->
+  <view class="comment-list">
+    <!-- 评论项 -->
+    <block wx:for="{{commentList}}" wx:key="id">
+      <view class="comment-item">
+        <view class="comment-header">
+          <view class="user-info">
+            <view class="user-name">{{item.userName}}</view>
+            <t-rate value="{{item.commentScore}}" size="12" gap="2" color="#FFD01E" variant="filled" readonly />
+          </view>
+          <view class="comment-rating">
+            <view class="comment-time">{{item.commentTime}}</view>
+          </view>
+        </view>
+        <view class="comment-content">{{item.commentContent}}</view>
+      </view>
+    </block>
+  </view>
+  <!-- 写评论按钮 -->
+  <view class="write-comment-btn" bindtap="writeComment">
+    <text>写评论</text>
+  </view>
+</view>

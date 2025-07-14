@@ -1,0 +1,14 @@
+<view class="login-guide">
+    <view class="guide-content">
+        <view class="background">
+            <view class="left-circle"></view>
+            <view class="right-circle"></view>
+            <image src="/images/logo-1.png" />
+            <view class="title">轻松管理毛孩子们</view>
+        </view>
+        <view class="btns">
+            <button bind:tap="toLogin">登录</button>
+            <button class="reg-btn">注册</button>
+        </view>
+    </view>
+</view>

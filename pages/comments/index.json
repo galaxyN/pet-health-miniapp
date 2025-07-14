@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "所有评论",
+  "usingComponents": {
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-rate": "tdesign-miniprogram/rate/rate"
+  }
+}

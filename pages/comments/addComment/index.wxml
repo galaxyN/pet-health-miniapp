@@ -1,0 +1,13 @@
+<view class="container">
+    <view class="header">
+        <view class="rating">
+            <t-rate value="{{rating}}" size="36" gap="4" color="#FFD01E" variant="filled" bindchange="onRateChange" />
+        </view>
+    </view>
+    <view class="comment-form">
+        <view class="form-input">
+            <textarea placeholder="请输入评论内容"></textarea>
+        </view>
+        <view class="submit-btn" bindtap="onSubmit">发送</view>
+    </view>
+</view>

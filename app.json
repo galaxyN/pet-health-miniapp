@@ -1,9 +1,14 @@
 {
   "pages": [
+    "pages/login/index",
+    "pages/login/guide",
     "pages/home/home",
+    "pages/comments/index",
+    "pages/comments/addComment/index",
     "pages/category/index",
     "pages/cart/index",
-    "pages/usercenter/index"
+    "pages/usercenter/index",
+    "pages/login/register/register"
   ],
   "subpackages": [
     {
@@ -92,7 +97,9 @@
     "chooseAddress"
   ],
   "lazyCodeLoading": "requiredComponents",
-  "usingComponents": {},
+  "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button"
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

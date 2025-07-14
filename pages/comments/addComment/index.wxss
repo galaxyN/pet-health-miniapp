@@ -1,0 +1,36 @@
+.container{
+    background-color: #f8f8f8;
+    height: 100vh;
+    box-sizing: border-box;
+}
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 76rpx;
+    margin: 0 auto;
+    padding: 32px 0;
+}
+
+.form-input{
+    display: flex;
+    justify-content: center;
+}
+
+.form-input textarea{
+    padding: 40rpx 30rpx;
+    border-radius: 12rpx;
+    background: #fff;
+}
+
+.submit-btn{
+    width: 480rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    padding: 20rpx 60rpx;
+    border-radius: 40rpx;
+    text-align: center;
+    margin: 80rpx auto;
+    background: #323232;
+    color: white;
+}
