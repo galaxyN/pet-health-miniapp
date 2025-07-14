@@ -5,8 +5,11 @@
     background: #fff;
     width: 90%;
     margin: 0 auto;
+    padding: 0 10rpx;
+    box-sizing: border-box;
     border-radius: 15px;
-}
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+} 
 
 .header {
     font-size: 18px;
