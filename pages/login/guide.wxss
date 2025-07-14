@@ -1,0 +1,65 @@
+.background{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.left-circle{
+    position: absolute;
+    background: #C3E4F2;
+    top: 104rpx;
+    left: -374rpx;
+    width: 786rpx;
+    height: 786rpx;
+    border-radius: 50%;
+}
+.right-circle{
+    position: absolute;
+    background: #C3E4F2;
+    top: -198rpx;
+    left: 548rpx;
+    width: 450rpx;
+    height: 450rpx;
+    border-radius: 50%;
+}
+
+.background image{
+    z-index: 10;
+    margin-top: 196px;
+    width: 260px;
+    height: 260px;
+}
+.background .title{
+    font-size: 24px;
+    font-family: Archivo;
+    font-weight: 500;
+    color: #323232;
+}
+
+.btns{
+    position: fixed;
+    display: flex;
+    bottom: 100rpx;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.btns button{
+    background: #323232;
+    color: #fff;
+    width: 520rpx;
+    height: 98rpx;
+    line-height: 98rpx;
+    border-radius: 32rpx;
+    text-align: center;
+    font-size: 28rpx;
+    margin-bottom: 30rpx;
+}
+.btns .reg-btn{
+    background: #fff;
+    color: #323232;
+    border: 1px solid #323232;
+}

@@ -1,0 +1,156 @@
+.comments-page {
+  background-color: #f8f8f8;
+  min-height: 100vh;
+  padding-bottom: 120rpx;
+}
+
+/* 评分概览 */
+.score-overview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 0;
+  border-bottom: 20rpx solid #f5f5f5;
+}
+
+.score-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10rpx;
+  width: 86%;
+  margin: 0 auto;
+}
+
+.score-value {
+  font-size: 72rpx;
+  font-weight: bold;
+  margin-right: 64rpx;
+}
+
+.score-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  width: 480rpx;
+}
+.score-bar-box{
+  display: flex;
+  align-items: center;
+}
+
+.score-tag{
+  font-size: 20rpx;
+  margin-right: 10rpx;
+}
+.score-bar {
+  flex-grow: 1;
+  height: 10rpx;
+  background-color: #eee;
+  border-radius: 5rpx;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  height: 100%;
+  background-color: #333;
+  border-radius: 5rpx;
+}
+
+.comment-count {
+  font-size: 24rpx;
+  color: #999;
+  width: 86%;
+  margin: 6rpx auto 0;
+  text-align: right;
+}
+
+/* 评论筛选标签 */
+.filter-tabs {
+  display: flex;
+  padding: 20rpx 30rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.tab-item {
+  font-size: 28rpx;
+  color: #666;
+  margin-right: 40rpx;
+  position: relative;
+  padding-bottom: 10rpx;
+}
+
+.tab-item.active {
+  color: #333;
+  font-weight: 500;
+}
+
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4rpx;
+  background-color: #333;
+  border-radius: 2rpx;
+}
+
+/* 评论列表 */
+.comment-list {
+  padding: 0 30rpx;
+}
+
+.comment-item {
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+  background: #fff;
+  border-radius: 16px;
+  margin-bottom: 30rpx;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 28rpx;
+  font-weight: 500;
+  margin-bottom: 6rpx;
+}
+
+.comment-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.comment-content {
+  font-size: 28rpx;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* 写评论按钮 */
+.write-comment-btn {
+  position: fixed;
+  width: 480rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  bottom: 80rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  font-size: 30rpx;
+  padding: 20rpx 60rpx;
+  border-radius: 40rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.2);
+}

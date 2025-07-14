@@ -22,14 +22,14 @@ Page({
   goToHospital: function() {
     // 跳转医院预约
     wx.navigateTo({
-      url: '/pages/hospital/list/index'
+      url: '/pages/hospital/list/index?type=hospital'
     });
   },
 
   goToBeauty: function() {
     // 跳转美容预约
     wx.navigateTo({
-      url: '/pages/beauty/beauty'
+      url: '/pages/hospital/list/index?type=beauty'
     });
   },
 

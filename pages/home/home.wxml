@@ -4,7 +4,6 @@
     <text>Hello，</text>
     <text>欢迎来到PawNest</text>
   </view>
-  
   <!-- 宠物档案卡片 -->
   <view class="pet-card">
     <view class="card-head">我的宠物档案</view>
@@ -17,10 +16,9 @@
       <view class="add-icon">+</view>
     </view>
   </view>
-  
   <!-- 功能模块 -->
   <view class="function-modules">
     <image src="/images/yiyuanyuyue.png" bind:tap="goToHospital" />
-    <image src="/images/meirongyuanyuyue.png" />
+    <image src="/images/meirongyuanyuyue.png" bind:tap="goToBeauty" />
   </view>
 </view>

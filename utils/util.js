@@ -122,6 +122,18 @@ const phoneRegCheck = (phone) => {
   return phoneRegExp.test(phone);
 };
 
+const setToken = (token) => {
+  wx.setStorageSync('token', token);
+};
+
+const getToken = () => {
+  return wx.getStorageSync('token');
+};
+
+const removeToken = () => {
+  wx.removeStorageSync('token');
+};
+
 module.exports = {
   formatTime,
   priceFormat,
@@ -130,4 +142,7 @@ module.exports = {
   rpx2px,
   phoneEncryption,
   phoneRegCheck,
+  setToken,
+  getToken,
+  removeToken,
 };

@@ -1,5 +1,6 @@
 Page({
   data: {
+    type: null,
     hospitals: [
       {
         id: 1,
@@ -27,6 +28,14 @@ Page({
 
   onLoad: function(options) {
     // 页面加载时逻辑
+    console.log(options);
+    const { type } = options;
+    if(type==='beauty'){
+      wx.setNavigationBarTitle({ title: '美容机构' })
+    }else{
+      wx.setNavigationBarTitle({ title: '宠物医院' })
+    }
+    this.setData({ type: type || 'hospital' })
   },
 
   // 预约按钮点击事件
@@ -35,6 +44,12 @@ Page({
     console.log(hospitalId);
     wx.navigateTo({
       url: `../details/index?id=${hospitalId}`
+    });
+  },
+
+  toComments(){
+    wx.navigateTo({
+      url: '../../comments/index'
     });
   }
 })

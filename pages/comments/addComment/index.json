@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "评论",
+  "usingComponents": {
+    "t-rate": "tdesign-miniprogram/rate/rate"
+  }
+}

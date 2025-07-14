@@ -1,0 +1,16 @@
+<view class="container">
+    <view class="logo-container">
+        <image class="logo" src="/images/logo-2.png" mode="aspectFit" />
+        <text class="title">登录</text>
+    </view>
+    <form class="form">
+        <input class="input" type="text" placeholder="用户名" name="username" model:value="{{username}}" />
+        <input class="input" password placeholder="Password" name="password" model:value="{{password}}" />
+        <view class="forget-password">忘记密码？</view>
+        <button class="login-button" bind:tap="onSubmit">登录</button>
+    </form>
+    <view class="register">
+        <text>没有账户？</text>
+        <text class="register-link" bind:tap="onRegister">注册</text>
+    </view>
+</view>
