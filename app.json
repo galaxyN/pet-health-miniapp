@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/login/index",
     "pages/home/home",
+    "pages/login/index",
     "pages/login/guide",
     "pages/usercenter/index",
     "pages/comments/index",
@@ -27,8 +27,6 @@
       "pages": [
         "list/index",
         "details/index",
-        "search/index",
-        "result/index",
         "comments/index",
         "comments/create/index",
         "appointment/index"
