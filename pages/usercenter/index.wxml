@@ -5,15 +5,15 @@
   <view class="user-info">
     <view class="user-info-item">
       <text class="label">用户名</text>
-      <view class="value">21</view>
+      <view class="value">{{ user.name }}</view>
     </view>
     <view class="user-info-item">
       <text class="label">电话</text>
-      <view class="value">21</view>
+      <view class="value">{{ user.phone }}</view>
     </view>
     <view class="user-info-item">
       <text class="label">收货地址</text>
-      <view class="value">21</view>
+      <view class="value">{{ user.address }}</view>
     </view>
   </view>
 </view>

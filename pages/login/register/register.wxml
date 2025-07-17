@@ -1,7 +1,7 @@
 <!--pages/login/register/register.wxml-->
 <view class="container">
   <view class="logo-container">
-    <image class="logo" src="/images/logo-1.png" mode="aspectFit" />
+    <image class="logo" src="/images/logo-2.png" mode="aspectFit" />
     <text class="title">注册</text>
   </view>
   <form class="form">

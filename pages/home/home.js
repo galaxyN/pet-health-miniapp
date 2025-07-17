@@ -12,6 +12,14 @@ Page({
     // 页面加载时初始化数据
   },
 
+  onShow(){
+    this.getTabBar().init();
+  },
+  toLogin(){
+    wx.navigateTo({
+      url: '/pages/login/index'
+    });
+  },
   addPet: function() {
     // 添加宠物逻辑
     wx.navigateTo({
