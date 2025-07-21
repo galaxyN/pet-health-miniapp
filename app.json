@@ -8,7 +8,8 @@
     "pages/comments/addComment/index",
     "pages/category/index",
     "pages/cart/index",
-    "pages/login/register/register"
+    "pages/login/register/register",
+    "pages/cart/orderInfo/index"
   ],
   "subpackages": [
     {
@@ -30,23 +31,6 @@
         "comments/index",
         "comments/create/index",
         "appointment/index"
-      ]
-    },
-    {
-      "root": "pages/order",
-      "name": "order",
-      "pages": [
-        "order-confirm/index",
-        "receipt/index",
-        "pay-result/index",
-        "order-list/index",
-        "order-detail/index",
-        "apply-service/index",
-        "after-service-list/index",
-        "after-service-detail/index",
-        "fill-tracking-no/index",
-        "delivery-detail/index",
-        "invoice/index"
       ]
     },
     {

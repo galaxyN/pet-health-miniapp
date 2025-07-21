@@ -1,6 +1,6 @@
 <!-- 分层购物车 -->
 <view class="order-list">
-  <view class="order" wx:for="{{orderList}}">
+  <view class="order" wx:for="{{orderList}}" bindtap="toOrderDetail">
     <view class="image-box">
       <image src="{{item.image}}" />
     </view>

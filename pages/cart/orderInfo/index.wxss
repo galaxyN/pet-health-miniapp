@@ -1,0 +1,59 @@
+.container{
+  padding: 20rpx 40rpx;
+}
+.container .order{
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 20rpx;
+  align-items: center;
+  padding: 20rpx;
+  font-size: 28rpx;
+  margin-bottom: 30rpx;
+  position: relative;
+}
+
+.order image-box{
+  width: 100rpx;
+  height: 100rpx;
+}
+.order image{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+.order .order-info{
+  width: 70%;
+}
+.order .right-info{
+  position: absolute;
+  font-size: 26rpx;
+  text-align: right;
+  color: #8E8E8E;
+  right: 30rpx;
+}
+
+.order-detail .order-info{
+  margin-bottom: 20rpx;
+}
+.order-detail .order-info .title{
+  color: #171717;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+.order-detail .order-info .content{
+  color: #8E8E8E;
+  font-size: 28rpx;
+}
+
+.address .content{
+    margin-top: 10rpx;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.orderNo,.time{
+    height: 60rpx;
+    line-height: 60rpx;
+    display: flex;
+    justify-content: space-between;
+}

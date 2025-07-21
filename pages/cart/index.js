@@ -38,6 +38,11 @@ Page({
 
   refreshData() {
     
+  },
+  toOrderDetail(){
+    wx.navigateTo({
+      url: '/pages/cart/orderInfo/index',
+    })
   }
 
 });

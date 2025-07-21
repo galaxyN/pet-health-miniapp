@@ -1,0 +1,40 @@
+<view class="container">
+    <view class="order">
+        <view class="image-box">
+            <image src="{{order.image}}" />
+        </view>
+        <view class="order-info">{{order.name}}</view>
+        <view class="right-info" wx:if="{{mode === 1}}">
+            <view class="price">¥{{order.price}}</view>
+            <view class="count">x{{order.count}}</view>
+        </view>  
+    </view>
+    <view class="order-detail" wx:if="{{mode === 1}}">
+        <view class="order-info address">
+            <view class="title">地址</view>
+            <view class="content">{{order.address}}</view>
+        </view>
+        <view class="order-info orderNo">
+            <view class="title">订单编号</view>
+            <view class="content">{{order.orderNo}}</view>
+        </view>
+        <view class="order-info time">
+            <view class="title">下单时间</view>
+            <view class="content">{{order.time}}</view>
+        </view>
+    </view>
+    <view class="order-detail" wx:else>
+        <view class="order-info time">
+            <view class="title">预约时间</view>
+            <view class="content">{{order.time1}}</view>
+        </view>
+        <view class="order-info orderNo">
+            <view class="title">订单编号</view>
+            <view class="content">{{order.orderNo}}</view>
+        </view>
+        <view class="order-info time">
+            <view class="title">下单时间</view>
+            <view class="content">{{order.time}}</view>
+        </view>
+    </view>
+</view>
