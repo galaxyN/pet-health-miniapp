@@ -6,7 +6,7 @@ export default [
   },
   {
     icon: 'sort',
-    text: '分类',
+    text: '商城',
     url: 'pages/category/index',
   },
   {
