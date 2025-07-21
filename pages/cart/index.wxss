@@ -1,13 +1,33 @@
-:host {
-  padding-bottom: 100rpx;
+.order-list{
+  width: calc(100% - 40rpx);
+  margin: 20rpx;
 }
 
-.gap {
+.order-list .order{
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 20rpx;
+  padding: 20rpx;
+  align-items: center;
+  font-size: 28rpx;
+  margin-bottom: 30rpx;
+  position: relative;
+}
+
+.order image-box{
+  width: 100rpx;
   height: 100rpx;
-  width: 100%;
 }
-
-.t-button {
-  --td-button-default-color: #000;
-  --td-button-primary-text-color: #fa4126;
+.order image{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+.order .order-info{
+  width: 75%;
+}
+.order .icon{
+  position: absolute;
+  right: 10rpx;
 }

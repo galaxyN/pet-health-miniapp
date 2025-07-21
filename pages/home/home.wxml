@@ -8,7 +8,7 @@
   <view class="pet-card" bind:tap="toLogin">
     <view class="card-head">我的宠物档案</view>
     <view class="card-main">
-      <image class="pet-avatar" src="/images/cat-1.jpeg"></image>
+      <image class="pet-avatar" src="http://117.72.219.186:8080/image/cat-1.jpeg"></image>
       <view class="pet-info">
         <view class="pet-name">Coni</view>
         <view class="pet-detail">马尔济斯，4岁6个月</view>
@@ -18,7 +18,7 @@
   </view>
   <!-- 功能模块 -->
   <view class="function-modules">
-    <image src="/images/yiyuanyuyue.png" bind:tap="goToHospital" />
-    <image src="/images/meirongyuanyuyue.png" bind:tap="goToBeauty" />
+    <image src="http://117.72.219.186:8080/image/yiyuanyuyue.png" bind:tap="goToHospital" />
+    <image src="http://117.72.219.186:8080/image/meirongyuanyuyue.png" bind:tap="goToBeauty" />
   </view>
 </view>

@@ -3,7 +3,7 @@
         <view class="background">
             <view class="left-circle"></view>
             <view class="right-circle"></view>
-            <image src="/images/logo-2.png" />
+            <image src="http://117.72.219.186:8080/image/logo-2.png" />
             <view class="title">轻松管理毛孩子们</view>
         </view>
         <view class="btns">
