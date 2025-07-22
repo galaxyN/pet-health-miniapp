@@ -1,0 +1,7 @@
+{
+	"navigationBarTitleText": "购物车",
+  "usingComponents": {
+    "goods-card": "/components/goods-card/index",
+    "price": "/components/price/index"
+  }
+}

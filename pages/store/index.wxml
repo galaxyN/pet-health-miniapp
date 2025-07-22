@@ -1,3 +1,19 @@
+<view class="block">
+  <t-navbar
+    t-class-placeholder="t-navbar-placeholder"
+    t-class-content="t-navbar-content"
+    class="block"
+    title="宠物商城"
+  >
+  <view slot="left" class="custom-capsule" bindtap="goToCart">
+     <t-image
+      t-class="custom-image"
+      src="http://117.72.219.186:8080/image/cart.png"
+      aria-label="导航栏图片"
+    />
+  </view>
+  </t-navbar>
+</view>
 <view class="market-container">
     <!-- 搜索栏 -->
     <view class="search-bar">

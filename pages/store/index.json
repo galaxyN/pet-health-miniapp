@@ -1,6 +1,9 @@
 {
-    "navigationBarTitleText": "宠物商城",
+    "navigationStyle": "custom",
+    "styleIsolation": "apply-shared",
     "usingComponents": {
+        "t-navbar": "tdesign-miniprogram/navbar/navbar",
+        "t-image": "tdesign-miniprogram/image/image",
         "t-icon": "tdesign-miniprogram/icon/icon"
     }
 }

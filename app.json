@@ -12,7 +12,8 @@
     "pages/login/register/register",
     "pages/cart/orderInfo/index",
     "pages/pet/editPet/index",
-    "pages/store/goodsDetail/index"
+    "pages/store/goodsDetail/index",
+    "pages/store/cart/index"
   ],
   "subpackages": [
     {

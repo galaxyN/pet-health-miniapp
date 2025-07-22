@@ -1,0 +1,33 @@
+<view class="cart-page">
+  <!-- 商品列表区域 -->
+  <view class="goods-list">
+    <view class="goods-item" wx:for="{{cartList}}" wx:key="id">
+		<view class="goods-image">
+            <image src="{{item.image}}" mode="aspectFit" />
+        </view>
+        <view class="goods-info">
+            <view class="quantity-control">
+                <button bindtap="decreaseQuantity" data-id="{{item.id}}">-</button>
+            <text>{{item.quantity}}</text>
+            <button bindtap="increaseQuantity" data-id="{{item.id}}">+</button>
+            </view>
+            <button class="delete-btn" bindtap="deleteItem" data-id="{{item.id}}">
+                <image src="/images/delete-icon.png" mode="aspectFit"></image>
+            </button>
+        </view>
+    </view>
+  </view>
+
+  <!-- 结算区域 -->
+  <view class="checkout-area">
+    <view class="total-info">
+        <view class="total">
+            <text>总计：￥{{totalPrice}}</text>
+        </view>
+        <view class="num">3件物品</view>
+    </view>
+    <view>
+        <t-button t-class="checkout-btn" size="large" bindtap="checkout">结算</t-button>
+    </view>    
+  </view>
+</view>

@@ -1,4 +1,7 @@
+import themeChangeBehavior from 'tdesign-miniprogram/mixins/theme-change';
+
 Page({
+  behaviors: [themeChangeBehavior],
   data: {
     activeCategory: 'all',
     searchValue: '',
@@ -74,7 +77,15 @@ Page({
       filteredProducts: this.data.products
     });
   },
+  onShow(){
+    this.getTabBar().init();
+  },
 
+  goToCart(){
+    wx.navigateTo({
+      url: '/pages/store/cart/index'
+    });
+  },
   // 切换分类
   switchCategory(e) {
     const category = e.currentTarget.dataset.category;

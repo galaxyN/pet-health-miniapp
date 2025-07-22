@@ -26,6 +26,8 @@
   border-radius: 20rpx;
   padding: 20rpx 40rpx;
   margin-bottom: 40rpx;
+  height: 80rpx;
+  position: relative;
 }
 .user-info-item .label{
   font-size: 13px;
