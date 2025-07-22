@@ -35,7 +35,13 @@ Page({
       }
     ],
     quantity: 1,
-    isFavorite: false
+    isFavorite: false,
+    comment: {
+      userName: '张三',
+      content: '这款狗粮真的很不错，狗狗很喜欢吃。',
+      score: 5,
+      time: '2023-10-01'
+    }
   },
 
   onLoad(options) {

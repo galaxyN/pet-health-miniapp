@@ -4,12 +4,12 @@
         <swiper-item>
             <image src="http://117.72.219.186:8080/image/store/food/01.jpg" mode="aspectFill"></image>
         </swiper-item>
-        <swiper-item>
+        <!-- <swiper-item>
             <image src="http://117.72.219.186:8080/image/store/food/02.jpg" mode="aspectFill"></image>
         </swiper-item>
         <swiper-item>
             <image src="http://117.72.219.186:8080/image/store/food/03.png" mode="aspectFill"></image>
-        </swiper-item>
+        </swiper-item> -->
     </swiper>
 
     <!-- 商品基本信息 -->
@@ -22,25 +22,7 @@
         </view>
     </view>
 
-    <!-- 商品规格选择 -->
-    <view class="spec-section">
-        <view class="spec-item" wx:for="{{specs}}" wx:key="name">
-            <text class="spec-label">{{item.name}}</text>
-            <view class="spec-options">
-                <view 
-                    wx:for="{{item.options}}"
-                    wx:key="*this"
-                    class="spec-option {{index === item.selected ? 'active' : ''}}"
-                    bindtap="selectSpec"
-                    data-spec-index="{{index}}"
-                    data-option-index="{{index}}"
-                >
-                    {{item}}
-                </view>
-            </view>
-        </view>
-    </view>
-
+    <!-- 商品评价-->
     <view class="detail-evaluation">
         <view class="evaluation-top">
             <view class="evaluation-title">评论</view>
@@ -49,14 +31,14 @@
         <view class="comment-item">
             <view class="comment-header">
                 <view class="user-info">
-                    <view class="user-name">{{item.userName}}</view>
-                    <t-rate value="{{item.commentScore}}" size="12" gap="2" color="#FFD01E" variant="filled" readonly />
+                    <view class="user-name">{{comment.userName}}</view>
+                    <t-rate value="{{comment.score}}" size="12" gap="2" color="#FFD01E" variant="filled" readonly />
                 </view>
                 <view class="comment-rating">
-                    <view class="comment-time">{{item.commentTime}}</view>
+                    <view class="comment-time">{{item.time}}</view>
                 </view>
             </view>
-            <view class="comment-content">{{item.commentContent}}</view>
+            <view class="comment-content">{{comment.content}}</view>
       </view>
     </view>
 
