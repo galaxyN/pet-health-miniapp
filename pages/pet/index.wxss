@@ -1,0 +1,114 @@
+/* 页面容器 */
+.pet-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f7f7f7;
+}
+
+/* 顶部导航栏 */
+.header {
+    position: relative;
+    height: 100rpx;
+}
+
+.header image {
+    position: absolute;
+    width: 80rpx;
+    height: 80rpx;
+    top: 20rpx;
+    right: 30rpx;
+}
+
+/* 主要内容区 */
+.content {
+    flex: 1;
+    padding: 30rpx;
+    overflow-y: auto;
+}
+
+/* 宠物信息卡片 */
+.pet-card-box{
+    margin-bottom: 30rpx;
+}
+.pet-card {
+    display: flex;
+    background: white;
+    align-items: center;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.pet-card-footer{
+    margin-top: 20rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    --td-button-medium-height: 60rpx;
+    --td-button-medium-padding-horizontal: 48rpx;
+}
+.pet-card-footer .btn-box{
+    margin-bottom: 10rpx;
+}
+
+.pet-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.pet-info {
+    flex: 1;
+}
+
+.pet-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.pet-meta text {
+    display: block;
+    font-size: 14px;
+    color:#171717;
+    margin-bottom: 3px;
+}
+
+/* 健康指标区域 */
+.health-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.metric-card {
+    background: white;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.metric-title {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 5px;
+}
+
+.metric-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.metric-value .unit {
+    font-size: 14px;
+    color: #999;
+    margin-left: 3px;
+}
+
+.metric-trend {
+    font-size: 12px;
+    color: #4a90e2;
+    margin-top: 3px;
+}

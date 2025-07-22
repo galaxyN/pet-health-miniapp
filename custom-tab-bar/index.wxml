@@ -10,7 +10,7 @@
 	 wx:key="index"
 	>
 		<view class="custom-tab-bar-wrapper">
-			<t-icon prefix="wr" name="{{item.icon}}" size="48rpx" />
+			<t-icon name="{{item.icon}}" size="48rpx" />
       <!-- <view class="iconfont icon-home"></view> -->
 			<view class="text">{{ item.text }}</view>
 		</view>

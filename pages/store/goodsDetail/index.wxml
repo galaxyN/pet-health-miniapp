@@ -1,0 +1,76 @@
+<view class="goods-detail">
+    <!-- 商品图片轮播 -->
+    <swiper class="goods-swiper" indicator-dots autoplay interval="3000">
+        <swiper-item>
+            <image src="http://117.72.219.186:8080/image/store/food/01.jpg" mode="aspectFill"></image>
+        </swiper-item>
+        <swiper-item>
+            <image src="http://117.72.219.186:8080/image/store/food/02.jpg" mode="aspectFill"></image>
+        </swiper-item>
+        <swiper-item>
+            <image src="http://117.72.219.186:8080/image/store/food/03.png" mode="aspectFill"></image>
+        </swiper-item>
+    </swiper>
+
+    <!-- 商品基本信息 -->
+    <view class="goods-info">
+        <view class="title">优质狗粮 10kg 全犬种通用 营养均衡配方</view>
+        <view class="price-section">
+            <text class="current-price">¥199</text>
+            <!-- <text class="original-price">¥259</text>
+            <text class="discount">7.7折</text> -->
+        </view>
+    </view>
+
+    <!-- 商品规格选择 -->
+    <view class="spec-section">
+        <view class="spec-item" wx:for="{{specs}}" wx:key="name">
+            <text class="spec-label">{{item.name}}</text>
+            <view class="spec-options">
+                <view 
+                    wx:for="{{item.options}}"
+                    wx:key="*this"
+                    class="spec-option {{index === item.selected ? 'active' : ''}}"
+                    bindtap="selectSpec"
+                    data-spec-index="{{index}}"
+                    data-option-index="{{index}}"
+                >
+                    {{item}}
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="detail-evaluation">
+        <view class="evaluation-top">
+            <view class="evaluation-title">评论</view>
+            <view class="all">全部</view>
+        </view>
+        <view class="comment-item">
+            <view class="comment-header">
+                <view class="user-info">
+                    <view class="user-name">{{item.userName}}</view>
+                    <t-rate value="{{item.commentScore}}" size="12" gap="2" color="#FFD01E" variant="filled" readonly />
+                </view>
+                <view class="comment-rating">
+                    <view class="comment-time">{{item.commentTime}}</view>
+                </view>
+            </view>
+            <view class="comment-content">{{item.commentContent}}</view>
+      </view>
+    </view>
+
+    <!-- 商品详情 -->
+    <view class="detail-section">
+        <view class="section-title">商品详情</view>
+        <rich-text nodes="{{detailContent}}"></rich-text>
+    </view>
+
+    <!-- 底部操作栏 -->
+    <view class="action-bar">
+        <view class="action-buttons">
+            <t-button t-class="add-cart" bindtap="addToCart">加入购物车</t-button>
+            <t-button t-class="buy-now" bindtap="buyNow">立即购买</t-button>
+        </view>
+    </view>
+</view>

@@ -1,6 +1,6 @@
 <view class="user">
   <view class="user-head">
-    <image src="/images/cat-1.jpeg"></image>
+    <image src="http://117.72.219.186:8080/image/cat-1.jpeg"></image>
   </view>
   <view class="user-info">
     <view class="user-info-item">

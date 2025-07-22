@@ -1,0 +1,221 @@
+/* 页面容器 */
+.goods-detail {
+    padding-bottom: 100px;
+    background: #f7f7f7;
+}
+
+/* 商品图片轮播 */
+.goods-swiper {
+    height: 375px;
+    background: white;
+}
+
+.goods-swiper image {
+    width: 100%;
+    height: 100%;
+}
+
+/* 商品基本信息 */
+.goods-info {
+    padding: 15px;
+    background: white;
+    margin-bottom: 10px;
+}
+
+.price-section {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.current-price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #323232;
+    margin-right: 10px;
+}
+
+.original-price {
+    font-size: 14px;
+    color: #999;
+    text-decoration: line-through;
+    margin-right: 10px;
+}
+
+.discount {
+    font-size: 12px;
+    color: white;
+    background: #ff4d4f;
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+.title {
+    font-size: 16px;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+
+.sales {
+    font-size: 12px;
+    color: #999;
+}
+
+/* 商品规格选择 */
+.spec-section {
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.spec-item {
+    margin-bottom: 15px;
+}
+
+.spec-item:last-child {
+    margin-bottom: 0;
+}
+
+.spec-label {
+    font-size: 14px;
+    color: #666;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.spec-options {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.spec-option {
+    padding: 6px 12px;
+    border: 1px solid #eee;
+    border-radius: 8rpx;
+    margin-right: 10px;
+    margin-bottom: 8px;
+    font-size: 24rpx;
+    color: #666;
+}
+
+.spec-option.active {
+    border-color: #4a90e2;
+    color: #4a90e2;
+    background: rgba(74,144,226,0.1);
+}
+
+/* 商品评价 */
+.detail-evaluation{
+    margin-bottom: 20rpx;
+    padding: 15px;
+}
+
+.detail-evaluation .evaluation-top{
+    display: flex;
+    justify-content: space-between;
+}
+
+.evaluation-top .evaluation-title{
+    color: #323232;
+    font-weight: 600;
+    font-size: 30rpx;
+}
+
+.evaluation-top .all{
+    color: #2D81FF;
+    font-size: 28rpx;
+}
+
+/* 商品详情 */
+.detail-section {
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+
+.section-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 10px;
+}
+
+.section-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 3px;
+    bottom: 3px;
+    width: 3px;
+    background: #4a90e2;
+}
+
+/* 底部操作栏 */
+.action-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: white;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding: 0 15px;
+}
+
+.action-icons {
+    display: flex;
+    margin-right: 15px;
+}
+
+.action-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.action-icon image {
+    width: 22px;
+    height: 22px;
+    margin-bottom: 2px;
+}
+
+.action-icon text {
+    font-size: 10px;
+    color: #666;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 20rpx;
+    flex: 1;
+    --td-button-default-border-color: #171717;
+}
+
+.add-cart {
+    flex: 1;
+    --td-button-default-bg-color: #f5f5f5;
+    --td-button-default-color: #171717;
+    --td-button-default-border-color: #171717;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 20px 0 0 20px;
+    font-size: 14px;
+}
+
+.buy-now {
+    flex: 1;
+    --td-button-default-bg-color: #171717;
+    --td-button-default-color: #fff;
+    --td-button-default-border-color: #171717;
+    border: none !important;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 0 20px 20px 0;
+    font-size: 14px;
+}

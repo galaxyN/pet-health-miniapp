@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "宠物商城",
+    "usingComponents": {
+        "t-icon": "tdesign-miniprogram/icon/icon"
+    }
+}

@@ -5,14 +5,14 @@ export default [
     url: 'pages/home/home',
   },
   {
-    icon: 'sort',
+    icon: 'store',
     text: '商城',
-    url: 'pages/category/index',
+    url: 'pages/store/index',
   },
   {
-    icon: 'sort',
+    icon: 'doge',
     text: '宠物',
-    url: 'pages/category/index',
+    url: 'pages/pet/index',
   },
   {
     icon: 'cart',
@@ -20,7 +20,7 @@ export default [
     url: 'pages/cart/index',
   },
   {
-    icon: 'person',
+    icon: 'user',
     text: '个人中心',
     url: 'pages/usercenter/index',
   },

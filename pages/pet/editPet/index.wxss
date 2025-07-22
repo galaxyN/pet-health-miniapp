@@ -1,0 +1,100 @@
+/* 页面容器 */
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f8f8f8;
+}
+
+/* 表单内容区 */
+.form-container {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+/* 头像上传区域 */
+.avatar-upload {
+    display: flex;
+    align-items: center;
+    width: 160rpx;
+    height: 160rpx;
+    margin: 20rpx auto;
+    position: relative;
+}
+
+.avatar {
+    width: 160rpx;
+    height: 160rpx;
+    border-radius: 50%;
+}
+
+.upload-icon {
+    position: absolute;
+    width: 50rpx;
+    height: 50rpx;
+    bottom: 0rpx;
+    right: 0rpx;
+}
+
+.form-item {
+    margin-bottom: 20rpx;
+    background: white;
+    border-radius: 30rpx;
+    padding: 16rpx 50rpx;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.form-label {
+    font-size: 24rpx;
+    color: #8E8E8E;
+}
+
+/* 表单输入样式 */
+.form-input {
+    width: 100%;
+    height: 36rpx;
+    font-size: 30rpx;
+    padding: 5rpx 0;
+}
+
+.right-icon{
+    position: absolute;
+    top: 50%;
+    right: 30rpx;
+    transform: translateY(-50%);
+}
+
+/* 选择器样式 */
+.form-picker {
+    width: 100%;
+}
+
+.picker-text {
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 30rpx;
+}
+
+/* 操作按钮区域 */
+.action-buttons {
+    display: flex;
+    padding: 30rpx 70rpx;
+}
+
+.btn {
+    flex: 1;
+    text-align: center;
+    padding: 24rpx;
+    border-radius: 15rpx;
+    font-size: 32rpx;
+    font-weight: bold;
+}
+
+.save-btn {
+    height: 50rpx;
+    line-height: 50rpx;
+    background: #323232;
+    color: white;
+}

@@ -1,0 +1,49 @@
+<view class="market-container">
+    <!-- 搜索栏 -->
+    <view class="search-bar">
+        <view class="search-input">
+            <icon type="search" size="16"></icon>
+            <input 
+                placeholder="搜索" 
+                value="{{searchValue}}"
+                bindinput="onSearchInput"
+            />
+        </view>
+        <image class="filter-icon" src="http://117.72.219.186:8080/image/Filter icon.png" />
+    </view>
+
+    <!-- 分类导航 -->
+    <scroll-view class="category-nav" scroll-x>
+        <view 
+            wx:for="{{categories}}"
+            wx:key="id"
+            class="category-item {{activeCategory === item.id ? 'active' : ''}}"
+            bindtap="switchCategory"
+            data-category="{{item.id}}"
+        >
+            {{item.name}}
+        </view>
+    </scroll-view>
+
+    <view class="product-recommend">产品推荐</view>
+
+    <!-- 商品展示 -->
+    <view class="product-list">
+        <view 
+            wx:for="{{filteredProducts}}"
+            wx:key="id"
+            class="product-item"
+            bindtap="goToDetail"
+            data-id="{{item.id}}"
+        >
+            <image class="product-image" src="{{item.image}}"></image>
+            <view class="product-info">
+                <view class="product-name">{{item.name}}</view>
+                <view class="product-introduce">
+                    <view class="product-sales">已售 {{item.sales}}件</view>
+                    <view class="product-price">¥{{item.price}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

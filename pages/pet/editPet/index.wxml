@@ -1,0 +1,59 @@
+<view class="container">
+    <!-- 表单内容区 -->
+    <view class="form-container">
+        <!-- 宠物头像上传 -->
+        <view class="avatar-upload">
+            <image class="avatar" src="/images/dog-1.jpeg" />
+            <image class="upload-icon" src="/images/add-icon1.png" />
+        </view>
+        
+        <!-- 宠物名称 -->
+        <view class="form-item">
+            <view class="form-label">宠物名称</view>
+            <input class="form-input" placeholder="请输入宠物名称" value="小黄"/>
+        </view>
+
+        <view class="form-item">
+            <view class="form-label">种类</view>
+            <input class="form-input" placeholder="请输入宠物名称" value="小黄"/>
+        </view>
+        
+        <!-- 宠物品种 -->
+        <view class="form-item">
+            <view class="form-label">品种</view>
+            <picker range="{{kindOptions}}" value="{{kindIndex}}" range-key="label" bindchange="onKindChange">
+                <view class="picker picker-text">
+                    {{kindOptions[kindIndex].label}}
+                </view>
+            </picker>
+            <t-icon t-class="right-icon" name="chevron-right" color="#666" size="48rpx" />
+        </view>
+
+        <!-- 宠物性别 -->
+        <view class="form-item">
+            <view class="form-label">性别</view>
+            <picker range="{{genderOptions}}" value="{{genderIndex}}" bindchange="onGenderChange">
+                <view class="picker picker-text">
+                    {{genderOptions[genderIndex]}}
+                </view>
+            </picker>
+            <t-icon t-class="right-icon" name="chevron-right" color="#666" size="48rpx" />
+        </view>
+        
+        <!-- 宠物年龄 -->
+        <view class="form-item">
+            <view class="form-label">年龄</view>
+            <input class="form-input" placeholder="请输入年龄" type="number" value="3"/>
+        </view>
+        
+        <view class="form-item">
+            <view class="form-label">体重</view>
+            <input class="form-input" placeholder="请输入体重" />
+        </view>
+    </view>
+    
+    <!-- 底部操作按钮 -->
+    <view class="action-buttons">
+        <view class="btn save-btn" bindtap="saveInfo">保存</view>
+    </view>
+</view>

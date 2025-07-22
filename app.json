@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/store/index",
+    "pages/pet/index",
     "pages/home/home",
     "pages/login/index",
     "pages/login/guide",
@@ -9,7 +11,9 @@
     "pages/category/index",
     "pages/cart/index",
     "pages/login/register/register",
-    "pages/cart/orderInfo/index"
+    "pages/cart/orderInfo/index",
+    "pages/pet/editPet/index",
+    "pages/store/goodsDetail/index"
   ],
   "subpackages": [
     {
@@ -62,8 +66,12 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/category/index",
-        "text": "分类"
+        "pagePath": "pages/store/index",
+        "text": "商城"
+      },
+      {
+        "pagePath": "pages/pet/index",
+        "text": "宠物"
       },
       {
         "pagePath": "pages/cart/index",
