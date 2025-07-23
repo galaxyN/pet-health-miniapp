@@ -1,0 +1,42 @@
+<view class="container">
+  <!-- 地址部分 -->
+  <view class="address-section" bindtap="editAddress">
+    <view class="address-info">
+      <text class="name">{{address.name}}</text>
+      <text class="phone">{{address.phone}}</text>
+      <text class="address">{{address.detail}}</text>
+    </view>
+    <view class="edit-btn">编辑</view>
+  </view>
+
+  <!-- 商品列表 -->
+  <view class="goods-list">
+    <block wx:for="{{goodsList}}" wx:key="index">
+      <view class="goods-item">
+        <text class="goods-name">{{item.name}}</text>
+        <text class="goods-price">¥{{item.price.toFixed(2)}}</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- 运费 -->
+  <view class="freight">
+    <text>运费</text>
+    <text class="price">¥{{freight.toFixed(2)}}</text>
+  </view>
+
+  <!-- 总计 -->
+  <view class="total">
+    <text>总计</text>
+    <text class="price">¥{{totalPrice}}</text>
+  </view>
+
+  <!-- 支付方式 -->
+  <view class="payment-method">
+    <text>{{paymentMethod}}</text>
+    <view class="checked-icon">✓</view>
+  </view>
+
+  <!-- 结算按钮 -->
+  <view class="submit-btn" bindtap="submitOrder">结算</view>
+</view>

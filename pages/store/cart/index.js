@@ -4,14 +4,14 @@ Page({
       {
         id: 1,
         image: 'http://117.72.219.186:8080/image/store/food/05.png',
-        title: '法米娜成犬粮羊肉南瓜7kg通用博美马尔济斯',
+        name: '法米娜成犬粮羊肉南瓜7kg通用博美马尔济斯',
         price: 95,
         quantity: 1
       },
       {
         id: 2,
         image: 'http://117.72.219.186:8080/image/store/food/06.png',
-        title: 'wurendao无人岛猫窝四半封闭式藤编猫窝狗窝',
+        name: 'wurendao无人岛猫窝四半封闭式藤编猫窝狗窝',
         price: 374,
         quantity: 1
       }
@@ -73,9 +73,8 @@ Page({
   },
 
   checkout() {
-    wx.showToast({
-      title: '结算成功',
-      icon: 'success'
+    wx.navigateTo({
+      url: '/pages/store/toOrder/index',
     });
   }
 });

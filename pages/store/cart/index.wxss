@@ -14,33 +14,69 @@
   display: flex;
   align-items: center;
   margin-bottom: 15px;
+  height: 200rpx;
   background: #fff;
+  box-sizing: border-box;
   border-radius: 20rpx;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 .goods-image{
-    margin-right: 15rpx;
+  height: 100%;
 }
 .goods-image image{
-    width: 192rpx;
-    height: 192rpx;
-    border-top-left-radius: 20rpx;
-    border-bottom-left-radius: 20rpx;
+  width: 192rpx;
+  height: 100%;
+  border-top-left-radius: 20rpx;
+  border-bottom-left-radius: 20rpx;
 }
 
+.goods-info{
+  padding: 30rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.goods-info .goods-introduce{
+  display: flex;
+  justify-content: space-between;
+}
+
+.goods-introduce .goods-name{
+  width: 60%;
+  font-size: 26rpx;
+  line-height: 40rpx;
+  color: #171717;
+}
+
+.goods-introduce .goods-price{
+  font-weight: 600;
+  font-size: 32rpx;
+  color: #323232;
+}
+
+.operation{
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .quantity-control {
   display: flex;
   align-items: center;
-  margin: 0 10px;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 0 20rpx;
+  border-radius: 40rpx;
+  border: 1px solid #f7f7f7;
+  background: #F3F3F3;
 }
-
-.quantity-control button {
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
+.quantity-control text{
+  background: #fff;
+  height: 60rpx;
+  width: 60rpx;
+}
+.quantity-control .btn {
+  width: 40rpx;
   text-align: center;
-  border: 1px solid #eee;
-  background: #f7f7f7;
 }
 
 .quantity-control text {

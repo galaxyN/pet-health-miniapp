@@ -13,7 +13,8 @@
     "pages/cart/orderInfo/index",
     "pages/pet/editPet/index",
     "pages/store/goodsDetail/index",
-    "pages/store/cart/index"
+    "pages/store/cart/index",
+    "pages/store/toOrder/index"
   ],
   "subpackages": [
     {

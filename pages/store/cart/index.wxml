@@ -2,19 +2,25 @@
   <!-- 商品列表区域 -->
   <view class="goods-list">
     <view class="goods-item" wx:for="{{cartList}}" wx:key="id">
-		<view class="goods-image">
-            <image src="{{item.image}}" mode="aspectFit" />
+		  <view class="goods-image">
+        <image src="{{item.image}}" mode="aspectFit" />
+      </view>
+      <view class="goods-info">
+        <view class="goods-introduce">
+          <view class="goods-name">{{item.name}}</view>
+          <view class="goods-price">￥{{item.price}}</view>
         </view>
-        <view class="goods-info">
-            <view class="quantity-control">
-                <button bindtap="decreaseQuantity" data-id="{{item.id}}">-</button>
+        <view class="operation">
+          <view class="quantity-control">
+            <view class="btn" bindtap="decreaseQuantity" data-id="{{item.id}}">-</view>
             <text>{{item.quantity}}</text>
-            <button bindtap="increaseQuantity" data-id="{{item.id}}">+</button>
-            </view>
-            <button class="delete-btn" bindtap="deleteItem" data-id="{{item.id}}">
-                <image src="/images/delete-icon.png" mode="aspectFit"></image>
-            </button>
+            <view class="btn" bindtap="increaseQuantity" data-id="{{item.id}}">+</view>
+          </view>
+          <view class="delete-btn" bindtap="deleteItem" data-id="{{item.id}}">
+            <t-icon name="delete" color="#8F8F8F" size="42rpx" />
+          </view>
         </view>
+      </view>
     </view>
   </view>
 
