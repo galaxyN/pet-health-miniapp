@@ -5,7 +5,7 @@
   <view class="user-info">
     <view class="user-info-item">
       <text class="label">用户名</text>
-      <view class="value">{{ user.name }}</view>
+      <view class="value">{{ user.nickname }}</view>
     </view>
     <view class="user-info-item">
       <text class="label">电话</text>

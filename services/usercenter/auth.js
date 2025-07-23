@@ -1,5 +1,13 @@
 import { request } from '../../utils/request';
 
+export function fetchLoginByCode(params) {
+  return request({
+    url: '/api/auth/wxLogin',
+    method: 'post',
+    data: params
+  })
+}
+
 /** 登录 */
 export function fetchLogin(params) {
   return request({

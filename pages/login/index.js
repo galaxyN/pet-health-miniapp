@@ -1,9 +1,11 @@
-import { fetchLogin,accountProfile } from '../../services/usercenter/auth';
+import { fetchLogin,accountProfile,fetchLoginByCode } from '../../services/usercenter/auth';
 import { setToken } from '../../utils/util';
+const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 Page({
   data: {
-    username: "admin",
-    password: "a123456",
+    avatarUrl: defaultAvatarUrl,
+    nickName: "",
+    password: "",
   },
   onLoad(options) {},
   
@@ -56,6 +58,49 @@ Page({
       }
     }).catch(err=>{
       console.error(err);
+    })
+  },
+
+  onChooseAvatar(e) {
+    const { avatarUrl } = e.detail
+    this.setData({
+      avatarUrl: avatarUrl,
+    })
+  },
+  onInputChange(e) {
+    const nickName = e.detail.value
+    this.setData({
+     nickName: nickName,
+    })
+  },
+
+  onLogin(){
+    wx.login({
+      success: res => {
+        console.log(res);
+        const params = { 
+          code: res.code,
+          nickName: this.data.nickName,
+          avatarUrl: this.data.avatarUrl,
+          password: this.data.password
+        };
+        fetchLoginByCode(params).then((res) => {
+          console.log('fetchLoginByCode', res);
+          if(res.success){
+            const { id,nickname,username,avatarUrl } = res.data;  
+            wx.setStorageSync('userInfo', { id,nickname,username,avatarUrl });
+            wx.showToast({
+              title: "登录成功",
+              icon: "success"
+            })
+            wx.switchTab({
+              url: "/pages/usercenter/index"
+            })
+          }
+        }).catch(err => {
+          console.error(err);
+        })
+      }
     })
   },
   onForgotPassword() {

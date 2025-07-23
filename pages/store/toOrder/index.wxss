@@ -6,10 +6,19 @@
 /* 地址部分样式 */
 .address-section {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   padding: 20rpx;
   border-bottom: 1rpx solid #f5f5f5;
+}
+.address-section .address-title{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+ .address-title text{
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
 }
 
 .address-info {
@@ -35,8 +44,13 @@
 
 /* 商品列表样式 */
 .goods-list {
-  padding: 20rpx 0;
-  border-bottom: 1rpx solid #f5f5f5;
+  padding: 20rpx;
+}
+.goods-title{
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 20rpx;
 }
 
 .goods-item {
@@ -51,7 +65,7 @@
 }
 
 .goods-price {
-  color: #ff6a00;
+  color: #171717;
   font-size: 28rpx;
 }
 
@@ -60,6 +74,8 @@
   display: flex;
   justify-content: space-between;
   padding: 20rpx 0;
+}
+.freight {
   border-bottom: 1rpx solid #f5f5f5;
 }
 
@@ -68,7 +84,7 @@
 }
 
 .price {
-  color: #ff6a00;
+  color: #171717;
 }
 
 /* 支付方式样式 */

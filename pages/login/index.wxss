@@ -10,16 +10,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 40rpx;
+  margin-bottom: 20rpx;
 }
-.logo {
-    margin-top: 144rpx;
-    width: 128rpx;
-    height: 128rpx;
-    border-radius: 30rpx;
-    margin-bottom: 20rpx;
-    box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+.avatar-wrapper {
+  margin-top: 144rpx;
+  padding: 0;
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 30rpx;
 }
+button::after{
+  background: none;
+  border: none;
+}
+.avatar {
+  display: block;
+  width: 56px;
+  height: 56px;
+  border-radius: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
 .title {
     font-family: Archivo;
     font-size: 36rpx;
@@ -27,22 +39,22 @@
     color: #171717;
 }
 .form {
-    width: 100%;
-    margin-top: 144rpx;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    padding: 0 20rpx;
+  width: 100%;
+  margin-top: 84rpx;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 0 40rpx;
 }
 .input {
-    height: 60rpx;
-    margin-bottom: 20rpx;
-    padding: 20rpx;
-    border-radius: 20rpx;
-    border: 1rpx solid #ddd;
-    background-color: #fff;
-    font-size: 24rpx;
-    box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+  height: 60rpx;
+  margin-bottom: 50rpx;
+  padding: 20rpx;
+  border-radius: 20rpx;
+  border: 1rpx solid #ddd;
+  background-color: #fff;
+  font-size: 24rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
 }
 .forget-password {
   text-align: right;
@@ -51,16 +63,15 @@
   font-size: 22rpx;
 }
 .login-button {
-    width: 520rpx;
-    height: 98rpx;
-    line-height: 98rpx;
-    border-radius: 30rpx;
-    background-color: #333;
-    color: #fff;
-    font-size: 26rpx;
-    font-weight: bold;
-    text-align: center;
-    border: none;
+  height: 98rpx;
+  line-height: 98rpx;
+  border-radius: 30rpx;
+  background-color: #333;
+  color: #fff;
+  font-size: 26rpx;
+  font-weight: bold;
+  text-align: center;
+  border: none;
 }
 .divider {
   display: flex;
