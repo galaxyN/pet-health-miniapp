@@ -22,10 +22,10 @@
             </view>
             <view class="pet-card-footer" wx:if="{{item.showBtn}}">
                 <view class="btn-box">
-                    <t-button variant="outline" bindtap="editPet">编辑</t-button>
+                    <t-button variant="outline" bindtap="editPet" data-index="{{index}}">编辑</t-button>
                 </view>
                 <view class="btn-box">
-                    <t-button variant="outline">删除</t-button>
+                    <t-button variant="outline" bindtap="deletePet" data-index="{{index}}">删除</t-button>
                 </view>
             </view>
         </view>

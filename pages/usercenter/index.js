@@ -1,4 +1,6 @@
 
+const { updateUserInfo: updateUserInfoService } = require('../../services/usercenter/updateUserInfo');
+
 Page({
   data: {
     user: {
@@ -58,6 +60,84 @@ Page({
 
   closeDialog() {
     this.setData({ showLogin: false });
+  },
+
+  onNicknameInput(e) {
+    this.setData({
+      'user.nickname': e.detail.value
+    });
+  },
+
+  onPhoneInput(e) {
+    this.setData({
+      'user.phone': e.detail.value
+    });
+  },
+
+  onAddressInput(e) {
+    this.setData({
+      'user.address': e.detail.value
+    });
+  },
+
+  async saveUserInfo() {
+    const { user } = this.data;
+    
+    // 简单的表单验证
+    if (!user.nickname.trim()) {
+      wx.showToast({
+        title: '请输入用户名',
+        icon: 'none'
+      });
+      return;
+    }
+    
+    if (!user.phone.trim()) {
+      wx.showToast({
+        title: '请输入电话号码',
+        icon: 'none'
+      });
+      return;
+    }
+
+    wx.showLoading({
+      title: '保存中...',
+    });
+
+    try {
+      // 调用保存用户信息的接口
+      const result = await this.updateUserInfo(user);
+      
+      wx.hideLoading();
+      
+      if (result.success) {
+        // 保存成功后更新本地存储
+        const userInfo = wx.getStorageSync('userInfo') || {};
+        Object.assign(userInfo, user);
+        wx.setStorageSync('userInfo', userInfo);
+        
+        wx.showToast({
+          title: '保存成功',
+          icon: 'success'
+        });
+      } else {
+        wx.showToast({
+          title: result.message || '保存失败',
+          icon: 'none'
+        });
+      }
+    } catch (error) {
+      wx.hideLoading();
+      wx.showToast({
+        title: '网络错误，请重试',
+        icon: 'none'
+      });
+    }
+  },
+
+  // 更新用户信息接口
+  updateUserInfo(userData) {
+    return updateUserInfoService(userData);
   },
 
 });

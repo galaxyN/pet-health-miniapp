@@ -49,6 +49,9 @@ Page({
     this.setData({
       goodsId: options.id || '1'
     });
+    
+    // 初始化购物车角标
+    this.updateCartBadge();
   },
 
   // 选择规格
@@ -86,11 +89,60 @@ Page({
   },
 
   // 加入购物车
-  addToCart() {
-    wx.showToast({
-      title: '已加入购物车',
-      icon: 'success'
-    });
+  async addToCart() {
+    const { goodsId, specs, quantity, detailContent } = this.data;
+    const goodsInfo = {
+      id: goodsId,
+      title: '优质狗粮 10kg 全犬种通用 营养均衡配方',
+      price: 19900, // 单位：分
+      image: 'http://117.72.219.186:8080/image/store/food/01.jpg',
+      quantity: quantity,
+      spec: specs.map(spec => spec.options[spec.selected]).join(' '),
+      selected: true
+    };
+
+    try {
+      const cart = wx.getStorageSync('cart') || [];
+      const existingIndex = cart.findIndex(item => item.id === goodsId && item.spec === goodsInfo.spec);
+      
+      if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+      } else {
+        cart.push(goodsInfo);
+      }
+      
+      wx.setStorageSync('cart', cart);
+      
+      wx.showToast({
+        title: '已加入购物车',
+        icon: 'success'
+      });
+      
+      // 更新购物车数量显示
+      this.updateCartBadge();
+    } catch (error) {
+      wx.showToast({
+        title: '添加失败，请重试',
+        icon: 'none'
+      });
+    }
+  },
+
+  // 更新购物车角标
+  updateCartBadge() {
+    const cart = wx.getStorageSync('cart') || [];
+    const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+    
+    if (totalCount > 0) {
+      wx.setTabBarBadge({
+        index: 2, // 购物车tab索引
+        text: totalCount.toString()
+      });
+    } else {
+      wx.removeTabBarBadge({
+        index: 2
+      });
+    }
   },
 
   // 立即购买

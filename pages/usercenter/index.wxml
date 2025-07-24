@@ -5,16 +5,19 @@
   <view class="user-info">
     <view class="user-info-item">
       <text class="label">用户名</text>
-      <view class="value">{{ user.nickname }}</view>
+      <input class="value-input" value="{{ user.nickname }}" bindinput="onNicknameInput" placeholder="请输入用户名" />
     </view>
     <view class="user-info-item">
       <text class="label">电话</text>
-      <view class="value">{{ user.phone }}</view>
+      <input class="value-input" value="{{ user.phone }}" bindinput="onPhoneInput" placeholder="请输入电话号码" type="number" />
     </view>
     <view class="user-info-item">
       <text class="label">收货地址</text>
-      <view class="value">{{ user.address }}</view>
+      <input class="value-input" value="{{ user.address }}" bindinput="onAddressInput" placeholder="请输入收货地址" />
     </view>
+  </view>
+  <view class="save-button-container">
+    <button class="save-button" bindtap="saveUserInfo">保存信息</button>
   </view>
 </view>
 <t-dialog

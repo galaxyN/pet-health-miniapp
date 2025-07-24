@@ -87,7 +87,8 @@ Page({
         fetchLoginByCode(params).then((res) => {
           console.log('fetchLoginByCode', res);
           if(res.success){
-            const { id,nickname,username,avatarUrl } = res.data;  
+            const { id,nickname,username,avatarUrl,token } = res.data;  
+            setToken(token);
             wx.setStorageSync('userInfo', { id,nickname,username,avatarUrl });
             wx.showToast({
               title: "登录成功",

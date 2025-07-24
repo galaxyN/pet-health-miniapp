@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-rate": "tdesign-miniprogram/rate/rate"
+  }
 }

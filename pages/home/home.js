@@ -2,9 +2,9 @@ Page({
   data: {
     petInfo: {
       name: 'Coni',
-      type: '马尔济斯',
+      desc: '马尔济斯',
       age: '4岁6个月',
-      avatar: '/images/cat-1.jpeg'
+      image: ''
     }
   },
 
@@ -14,7 +14,26 @@ Page({
 
   onShow(){
     this.getTabBar().init();
+    this.getPetInfo();
   },
+
+  /**
+   * 获取宠物信息
+   */
+  getPetInfo: function() {
+    // 从本地存储中获取 petList
+    const petList = wx.getStorageSync('petList');
+    if (petList && petList.length > 0) {
+      // 获取第一条宠物信息
+      const firstPet = petList[0];
+      // 更新页面数据
+      this.setData({
+        petInfo: firstPet
+      });
+    }
+  },
+  
+  
   toPet(){
     wx.switchTab({
       url: '/pages/pet/index'
