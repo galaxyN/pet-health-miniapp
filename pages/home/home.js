@@ -15,9 +15,9 @@ Page({
   onShow(){
     this.getTabBar().init();
   },
-  toLogin(){
-    wx.navigateTo({
-      url: '/pages/login/index'
+  toPet(){
+    wx.switchTab({
+      url: '/pages/pet/index'
     });
   },
   addPet: function() {

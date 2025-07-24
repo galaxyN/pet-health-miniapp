@@ -1,6 +1,6 @@
 <view class="user">
   <view class="user-head">
-    <image src="http://117.72.219.186:8080/image/cat-1.jpeg"></image>
+    <image src="http://117.72.219.186:8080/image/cat-1.jpeg" bindtap="showUser"/>
   </view>
   <view class="user-info">
     <view class="user-info-item">
@@ -17,3 +17,11 @@
     </view>
   </view>
 </view>
+<t-dialog
+  visible="{{showLogin}}"
+  title="未登录，请先登录"
+  confirm-btn="{{ confirmBtn }}"
+  cancel-btn="取消"
+  bind:confirm="confirmAction"
+  bind:cancel="closeDialog"
+/>

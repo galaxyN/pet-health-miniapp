@@ -5,7 +5,7 @@
     <text>欢迎来到PawNest</text>
   </view>
   <!-- 宠物档案卡片 -->
-  <view class="pet-card" bind:tap="toLogin">
+  <view class="pet-card" bind:tap="toPet">
     <view class="card-head">我的宠物档案</view>
     <view class="card-main">
       <image class="pet-avatar" src="http://117.72.219.186:8080/image/cat-1.jpeg"></image>
