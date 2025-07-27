@@ -1,7 +1,7 @@
 // pages/pet/editPet/index.js
+import { addPet } from '../../../services/pet/pet.js'
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -9,7 +9,7 @@ Page({
     id: null,
     avatar: defaultAvatarUrl,
     petName: '',
-    petKind: '',
+    breed: '',
     petAge: '',
     petWeight: '',
     type: '',
@@ -18,9 +18,9 @@ Page({
     genderOptions: ['公','母'],
     kindIndex: 0,
     kindOptions: [
-      { label: '猫', value: 1 },
-      { label: '狗', value: 2 },
-      { label: '其他', value: 3 },
+      { label: '猫', value: 'cat' },
+      { label: '狗', value: 'dog' },
+      { label: '其他', value: 'other' },
     ]
   },
 
@@ -83,9 +83,9 @@ Page({
       maxDuration: 30,
       camera: 'back',
       success(res) {
+        console.log('res',res);
         const { tempFiles } = res;
         const tempFilePath = tempFiles.length > 0 ? tempFiles[0].tempFilePath : '';
-        console.log('tempFilePath',tempFilePath)
         if(tempFilePath){
           that.setData({
             avatar: tempFilePath
@@ -94,6 +94,37 @@ Page({
       }
     })
   },
+
+  convertToBase64(filePath) {
+    return new Promise((resolve, reject) => {
+      wx.getImageInfo({
+        src: filePath,  
+        success(result) {
+          const imageType = result.type;
+          // console.log('图片类型为：', imageType);
+          wx.getFileSystemManager().readFile({
+            filePath: filePath,
+            encoding: 'base64',
+            success: (res) => {
+              console.log('res',res);
+              const base64Data = res.data;
+              // console.log('base64Data',base64Data);
+              resolve(`data:image/${imageType};base64,${base64Data}`);
+            },
+            fail: (err) => {
+              reject(err);
+            }
+          })
+        },
+        fail(err) {
+          console.error('获取图片信息失败：', err);
+          reject(err);
+        }
+      });
+      
+    })
+  },
+
   onKindChange: function(e) {
     this.setData({
       kindIndex: e.detail.value
@@ -113,46 +144,52 @@ Page({
     })
   },
   // 保存宠物信息
-  saveInfo(){
-    const { avatar,petName, petKind, petAge, petWeight,genderIndex,kindIndex,kindOptions,type } = this.data;
-    const kind = kindOptions[kindIndex].value;
-    if(!petName || !petKind || !petAge || !petWeight){
+  async saveInfo(){
+    const userId = wx.getStorageSync('userInfo')?.id;
+    const { avatar,petName, breed, petAge, petWeight,genderIndex,kindIndex,kindOptions,type } = this.data;
+    const petType = kindOptions[kindIndex].value;
+    if(!petName || !petAge || !petWeight){
       wx.showToast({
         title: '请填写完整信息',
         icon: 'none'
-      })
+      });
       return;
     }
+    const convertRes = await this.convertToBase64(avatar);
+    let avatarBase64 = '';
+    if(convertRes.startsWith('data:image')){
+      avatarBase64 = convertRes;
+    }
     let params = {
-      name: petName,
-      image: avatar,
-      desc: petKind,
-      age: +petAge,
+      userId,
+      petName,
+      petType,
+      breed: breed,
+      gender: genderIndex===0 ? 'male' : 'female',
       weight: +petWeight,
-      gender: genderIndex,
-      kind
+      // age: +petAge,
+      avatarBase64: avatarBase64
     };
-    const petList = wx.getStorageSync('petList') || [];
     if(type === 'add'){
-      params.id = petList[petList.length-1].id+1 || 1;
-      petList.push(params);
     }
     if(type === 'edit'){
       const id = this.data.id;
       params.id = id;
-      petList.forEach(item => {
-        if(item.id === id){
-          Object.assign(item, params)
-        }
-      })
     }
     console.log('params',params);
-    wx.showToast({
-      title: '保存成功',
+    addPet(params).then(res => {
+      console.log(res);
+      if(res.success){
+        wx.showToast({
+          title: '保存成功',
+        })
+        wx.navigateBack({
+          delta: 1,
+        })
+      }
+    }).catch(err => {
+
     })
-    wx.setStorageSync('petList', petList);
-    wx.navigateBack({
-      delta: 1,
-    })
+   
   }
 })

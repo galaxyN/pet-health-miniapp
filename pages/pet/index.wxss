@@ -1,7 +1,5 @@
 /* 页面容器 */
 .pet-container {
-    display: flex;
-    flex-direction: column;
     height: 100vh;
     background-color: #f7f7f7;
 }
@@ -22,11 +20,13 @@
 
 /* 主要内容区 */
 .content {
-    flex: 1;
+    height: calc(100vh - 282rpx);
     padding: 30rpx;
     overflow-y: auto;
 }
-
+.no-pet{
+    text-align: center;
+}
 /* 宠物信息卡片 */
 .pet-card-box{
     margin-bottom: 30rpx;

@@ -8,26 +8,33 @@
     <!-- 主要内容区 -->
     <view class="content">
         <!-- 宠物信息卡片 -->
-        <view class="pet-card-box" wx:for="{{petList}}">
-            <view class="pet-card">
-                <image class="pet-avatar" src="{{item.image}}" mode="aspectFill"></image>
-                <view class="pet-info">
-                    <view class="pet-name">{{item.name}}</view>
-                    <view class="pet-meta">
-                        <text>{{item.desc}}</text>
-                        <text>{{item.weight}}kg · {{item.age}}岁</text>
+        <block wx:if="{{petList.length > 0}}">
+            <view class="pet-card-box" wx:for="{{petList}}" wx:key="id">
+                <view class="pet-card">
+                    <image class="pet-avatar" src="{{item.avatarUrl}}" mode="aspectFill"></image>
+                    <view class="pet-info">
+                        <view class="pet-name">{{item.petName}}</view>
+                        <view class="pet-meta">
+                            <text>{{petTypeMap[item.petType]}}</text>
+                            <text>{{item.weight}}kg · {{item.age}}岁</text>
+                        </view>
+                    </view>
+                    <t-icon name="more" color="#171717" size="48rpx" data-index="{{index}}" bindtap="showMore" />
+                </view>
+                <view class="pet-card-footer" wx:if="{{item.showBtn}}">
+                    <view class="btn-box">
+                        <t-button variant="outline" bindtap="editPet" data-index="{{index}}">编辑</t-button>
+                    </view>
+                    <view class="btn-box">
+                        <t-button variant="outline" bindtap="deletePet" data-index="{{index}}">删除</t-button>
                     </view>
                 </view>
-                <t-icon name="more" color="#171717" size="48rpx" data-index="{{index}}" bindtap="showMore" />
             </view>
-            <view class="pet-card-footer" wx:if="{{item.showBtn}}">
-                <view class="btn-box">
-                    <t-button variant="outline" bindtap="editPet" data-index="{{index}}">编辑</t-button>
-                </view>
-                <view class="btn-box">
-                    <t-button variant="outline" bindtap="deletePet" data-index="{{index}}">删除</t-button>
-                </view>
-            </view>
+        </block>
+        <view wx:else>
+          <view class="no-pet">
+            <text>暂无宠物信息</text>
+          </view>
         </view>
     </view>
 </view>

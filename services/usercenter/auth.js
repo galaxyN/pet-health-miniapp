@@ -1,6 +1,6 @@
 import { request } from '../../utils/request';
 
-export function fetchLoginByCode(params) {
+export function login(params) {
   return request({
     url: '/api/auth/wxLogin',
     method: 'post',

@@ -1,4 +1,5 @@
-// pages/pet/index.js
+import { getPetList } from '../../services/pet/pet';
+
 const defaultList = [
   {
     id: 1,
@@ -8,24 +9,6 @@ const defaultList = [
     age: 3,
     weight: 5,
     showBtn: false
-  },
-  {
-    id: 2,
-    name: '旺财',
-    image: 'http://117.72.219.186:8080/image/pets/03.jpg',
-    desc: '马尔济斯',
-    age: 5,
-    weight: 3,
-    showBtn: false
-  },
-  {
-    id: 3,
-    name: '小白',
-    image: 'http://117.72.219.186:8080/image/pets/04.jpg',
-    desc: '暹罗猫',
-    age: 2,
-    weight: 4.8,
-    showBtn: false
   }
 ]
 Page({
@@ -34,14 +17,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    petList: []
+    petList: [],
+    petTypeMap:{
+      'cat': '猫',
+      'dog': '狗',
+      'other': '其他'
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.initPetList();
   },
 
 
@@ -67,10 +54,25 @@ Page({
   },
 
   getPetList(){
-    const petList = wx.getStorageSync('petList') || defaultList;
-    console.log('petList',petList);
-    this.setData({
-      petList: petList
+    const userInfo = wx.getStorageSync('userInfo');
+    const { id } = userInfo;
+    console.log('id',id,typeof id);
+    getPetList(+id).then(res => {
+      console.log('petList',res);
+      if(res.success){
+        const list = res.data;
+        if(list.length > 0){
+          this.setData({
+            petList: list
+          })
+        }else{
+          // this.setData({
+          //   petList: defaultList
+          // })
+        }
+      }
+    }).catch(err=>{
+      console.error(err);
     })
   },
   addPet(){

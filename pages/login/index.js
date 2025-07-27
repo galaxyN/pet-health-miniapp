@@ -1,4 +1,4 @@
-import { fetchLogin,accountProfile,fetchLoginByCode } from '../../services/usercenter/auth';
+import { fetchLogin,accountProfile } from '../../services/usercenter/auth';
 import { setToken } from '../../utils/util';
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 Page({
@@ -9,57 +9,57 @@ Page({
   },
   onLoad(options) {},
   
-  onSubmit(e) {
-    const { username, password } = this.data;
-    if (!username) {
-      wx.showToast({
-        title: "请输入用户名",
-        icon: "none"
-      });
-      return;
-    }
-    if (!password) {
-      wx.showToast({
-        title: "请输入密码",
-        icon: "none"
-      });
-      return;
-    }
-    // 这里可以添加登录请求逻辑
-    const params = {
-      username,
-      password,
-      lang: 'zh-CN'
-    }
-    console.log(params);
-    fetchLogin(params).then((resData) => {
-      console.log('fetchLogin', resData);
-      if (resData.success) {
-        const { token } = resData.data;
-        console.log('token', token);
-        setToken(token);
-        accountProfile().then((profileData) => {
-          console.log('accountProfile', profileData);
-          wx.showToast({
-            title: "登录成功",
-            icon: "success"
-          })
-          wx.switchTab({
-            url: "../home/home"
-          })
-        }).catch(err => {
-          console.error(err);
-        })
-      }else if (resData.code == 400) {
-        wx.showToast({
-          title: "用户名或密码错误",
-          icon: "none"
-        })
-      }
-    }).catch(err=>{
-      console.error(err);
-    })
-  },
+  // onSubmit(e) {
+  //   const { username, password } = this.data;
+  //   if (!username) {
+  //     wx.showToast({
+  //       title: "请输入用户名",
+  //       icon: "none"
+  //     });
+  //     return;
+  //   }
+  //   if (!password) {
+  //     wx.showToast({
+  //       title: "请输入密码",
+  //       icon: "none"
+  //     });
+  //     return;
+  //   }
+  //   // 这里可以添加登录请求逻辑
+  //   const params = {
+  //     username,
+  //     password,
+  //     lang: 'zh-CN'
+  //   }
+  //   console.log(params);
+  //   fetchLogin(params).then((resData) => {
+  //     console.log('fetchLogin', resData);
+  //     if (resData.success) {
+  //       const { token } = resData.data;
+  //       console.log('token', token);
+  //       setToken(token);
+  //       accountProfile().then((profileData) => {
+  //         console.log('accountProfile', profileData);
+  //         wx.showToast({
+  //           title: "登录成功",
+  //           icon: "success"
+  //         })
+  //         wx.switchTab({
+  //           url: "../home/home"
+  //         })
+  //       }).catch(err => {
+  //         console.error(err);
+  //       })
+  //     }else if (resData.code == 400) {
+  //       wx.showToast({
+  //         title: "用户名或密码错误",
+  //         icon: "none"
+  //       })
+  //     }
+  //   }).catch(err=>{
+  //     console.error(err);
+  //   })
+  // },
 
   onChooseAvatar(e) {
     const { avatarUrl } = e.detail
@@ -84,18 +84,24 @@ Page({
           avatarUrl: this.data.avatarUrl,
           password: this.data.password
         };
-        fetchLoginByCode(params).then((res) => {
-          console.log('fetchLoginByCode', res);
+        fetchLogin(params).then(async (res) => {
+          console.log('wxReg', res);
           if(res.success){
-            const { id,nickname,username,avatarUrl,token } = res.data;  
+            const { token } = res.data;  
             setToken(token);
-            wx.setStorageSync('userInfo', { id,nickname,username,avatarUrl });
-            wx.showToast({
-              title: "登录成功",
-              icon: "success"
-            })
-            wx.switchTab({
-              url: "/pages/usercenter/index"
+            accountProfile().then((profileData) => {
+              console.log('accountProfile', profileData);
+              const { id,nickname,username,avatarUrl } = profileData.data;
+              wx.setStorageSync('userInfo', { id,nickname,username,avatarUrl });
+              wx.showToast({
+                title: "登录成功",
+                icon: "success"
+              })
+              wx.switchTab({
+                url: "../home/home"
+              })
+            }).catch(err => {
+              console.error(err);
             })
           }
         }).catch(err => {

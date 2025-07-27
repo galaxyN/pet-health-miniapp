@@ -107,7 +107,6 @@ Page({
     try {
       // 调用保存用户信息的接口
       const result = await this.updateUserInfo(user);
-      
       wx.hideLoading();
       
       if (result.success) {
