@@ -15,7 +15,7 @@
 
         <view class="form-item">
             <view class="form-label">种类</view>
-            <input class="form-input" placeholder="请输入宠物名称" model:value="{{breed}}"/>
+            <input class="form-input" placeholder="请输入宠物种类" model:value="{{breed}}"/>
         </view>
         
         <!-- 宠物品种 -->

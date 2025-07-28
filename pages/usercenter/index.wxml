@@ -13,7 +13,10 @@
     </view>
     <view class="user-info-item">
       <text class="label">收货地址</text>
-      <input class="value-input" value="{{ user.address }}" bindinput="onAddressInput" placeholder="请输入收货地址" />
+      <input class="value-input" disabled value="{{ user.address }}" bindinput="onAddressInput" placeholder="请输入收货地址" />
+      <view class="icon">
+        <t-icon name="chevron-right" color="#666" size="48rpx" />
+      </view>
     </view>
   </view>
   <view class="save-button-container">

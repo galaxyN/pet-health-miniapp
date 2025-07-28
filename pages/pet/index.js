@@ -1,4 +1,4 @@
-import { getPetList } from '../../services/pet/pet';
+import { getPetList,deletePet } from '../../services/pet/pet';
 
 const defaultList = [
   {
@@ -65,10 +65,6 @@ Page({
           this.setData({
             petList: list
           })
-        }else{
-          // this.setData({
-          //   petList: defaultList
-          // })
         }
       }
     }).catch(err=>{
@@ -91,14 +87,16 @@ Page({
       success: (res) => {
         if (res.confirm) {
           // 用户点击确定，删除对应宠物
-          petList.splice(index, 1);
-          this.setData({ petList });
-          // 更新本地存储
-          wx.setStorageSync('petList', petList);
-          wx.showToast({
-            title: '删除成功',
-            icon: 'success'
-          });
+          const id = petList[index].id;
+          deletePet(id).then(res=>{
+            wx.showToast({
+              title: '删除成功',
+              icon: 'success'
+            });
+            this.getPetList();
+          }).catch(err=>{
+            console.error(err);
+          })
         } else if (res.cancel) {
           // 用户点击取消，不做操作
           console.log('用户取消删除');

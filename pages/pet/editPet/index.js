@@ -1,5 +1,5 @@
 // pages/pet/editPet/index.js
-import { addPet } from '../../../services/pet/pet.js'
+import { addPet,editPet } from '../../../services/pet/pet.js'
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 Page({
   /**
@@ -38,15 +38,17 @@ Page({
       const eventChannel = this.getOpenerEventChannel()
       eventChannel.on('getPetInfo', function(data) {
         const { pet } = data;
+        console.log('pet', pet);
+        const kindIndex = that.data.kindOptions.findIndex(item => item.value === pet.petType);
         that.setData({
           id: pet.id,
-          avatar: pet.image || defaultAvatarUrl,
-          petName: pet.name,
+          avatar: pet.avatarUrl,
+          petName: pet.petName,
           petKind: pet.desc,
           petAge: pet.age,
           petWeight: pet.weight,
           genderIndex: pet.gender === '公' ? 0 : 1,
-          kindIndex: pet.kind === '猫' ? 0 : (pet.kind === '狗' ? 1 : 2)
+          kindIndex: kindIndex
         })
       })
     }
@@ -97,30 +99,22 @@ Page({
 
   convertToBase64(filePath) {
     return new Promise((resolve, reject) => {
-      wx.getImageInfo({
-        src: filePath,  
-        success(result) {
-          const imageType = result.type;
-          // console.log('图片类型为：', imageType);
-          wx.getFileSystemManager().readFile({
-            filePath: filePath,
-            encoding: 'base64',
-            success: (res) => {
-              console.log('res',res);
-              const base64Data = res.data;
-              // console.log('base64Data',base64Data);
-              resolve(`data:image/${imageType};base64,${base64Data}`);
-            },
-            fail: (err) => {
-              reject(err);
-            }
-          })
+      const pointIndex = filePath.lastIndexOf('.');
+      const imageType = filePath.substring(pointIndex + 1);
+      console.log('图片类型为：', imageType);
+      wx.getFileSystemManager().readFile({
+        filePath: filePath,
+        encoding: 'base64',
+        success: (res) => {
+          console.log('res',res);
+          const base64Data = res.data;
+          // console.log('base64Data',base64Data);
+          resolve(`data:image/${imageType};base64,${base64Data}`);
         },
-        fail(err) {
-          console.error('获取图片信息失败：', err);
+        fail: (err) => {
           reject(err);
         }
-      });
+      })
       
     })
   },
@@ -155,10 +149,12 @@ Page({
       });
       return;
     }
-    const convertRes = await this.convertToBase64(avatar);
     let avatarBase64 = '';
-    if(convertRes.startsWith('data:image')){
-      avatarBase64 = convertRes;
+    if(avatar){
+      const convertRes = await this.convertToBase64(avatar);
+      if(convertRes.startsWith('data:image')){
+        avatarBase64 = convertRes;
+      }
     }
     let params = {
       userId,
@@ -170,26 +166,30 @@ Page({
       // age: +petAge,
       avatarBase64: avatarBase64
     };
+    console.log('params',params);
     if(type === 'add'){
+      addPet(params).then(res => {
+        console.log(res);
+        if(res.success){
+          wx.showToast({ title: '添加成功' })
+          wx.navigateBack({ delta: 1 })
+        }
+      }).catch(err => {
+        console.error(err);
+      })
     }
     if(type === 'edit'){
       const id = this.data.id;
       params.id = id;
+      editPet(params).then(res => {
+        if(res.success){
+          wx.showToast({ title: '修改成功' })
+          wx.navigateBack({ delta: 1 })
+        }
+      }).catch(err => {
+        console.error(err);
+      })
     }
-    console.log('params',params);
-    addPet(params).then(res => {
-      console.log(res);
-      if(res.success){
-        wx.showToast({
-          title: '保存成功',
-        })
-        wx.navigateBack({
-          delta: 1,
-        })
-      }
-    }).catch(err => {
-
-    })
    
   }
 })

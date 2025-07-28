@@ -47,6 +47,12 @@
   outline: none;
   background: transparent;
 }
+.user-info-item  .icon{
+  position: absolute;
+  right: 5rpx;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
 .save-button-container{
   margin-top: 200rpx;

@@ -1,3 +1,4 @@
+import { getPetList } from '../../services/pet/pet';
 Page({
   data: {
     petInfo: {
@@ -21,16 +22,24 @@ Page({
    * 获取宠物信息
    */
   getPetInfo: function() {
-    // 从本地存储中获取 petList
-    const petList = wx.getStorageSync('petList');
-    if (petList && petList.length > 0) {
-      // 获取第一条宠物信息
-      const firstPet = petList[0];
-      // 更新页面数据
-      this.setData({
-        petInfo: firstPet
-      });
-    }
+    const userInfo = wx.getStorageSync('userInfo');
+    const { id } = userInfo;
+    let firstPet; 
+    getPetList(+id).then(res => {
+      console.log('petList',res);
+      if(res.success){
+        const list = res.data;
+        if(list.length > 0){
+          // 获取第一条宠物信息
+          firstPet = list[0]
+          this.setData({
+            petInfo: firstPet
+          });
+        }
+      }
+    }).catch(err=>{
+      console.error(err);
+    })
   },
   
   

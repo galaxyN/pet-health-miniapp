@@ -8,9 +8,9 @@
   <view class="pet-card" bind:tap="toPet">
     <view class="card-head">我的宠物档案</view>
     <view class="card-main">
-      <image class="pet-avatar" src="{{petInfo.image}}"></image>
+      <image class="pet-avatar" src="{{petInfo.avatarUrl}}"></image>
       <view class="pet-info">
-        <view class="pet-name">{{petInfo.name}}</view>
+        <view class="pet-name">{{petInfo.petName}}</view>
         <view class="pet-detail">{{petInfo.desc}}，{{petInfo.age}}岁{{petInfo.weight}}kg</view>
       </view>
       <view class="add-icon">+</view>
