@@ -1,0 +1,27 @@
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <input placeholder="搜索" />
+    <image src="../resource/organization/search.png" />
+  </view>
+  <!-- 医院列表 -->
+  <view class="organization-list">
+    <block wx:for="{{filteredOrganizations}}" wx:key="id">
+      <view class="organization-card">
+        <image class="organization-icon" src="{{item.imageUrl}}" />
+        <view class="organization-info" bind:tap="toComments">
+          <text class="organization-name">{{item.name}}</text>
+          <view class="rating">
+            <block wx:for="{{item.stars}}" wx:key="*this">
+              <image src="{{item === 1 ? '../resource/organization/star-full.png' : (item === 0.5 ? '../resource/organization/star-half.png' : '/../resource/organization/star.png')}}" />
+            </block>
+            <text class="rating-text">{{item.rating}}分</text>
+          </view>
+        </view>
+        <button class="appointment-btn" bindtap="handleAppointment" data-id="{{item.id}}">
+          预约
+        </button>
+      </view>
+    </block>
+  </view>
+</view>

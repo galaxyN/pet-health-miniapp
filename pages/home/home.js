@@ -58,14 +58,14 @@ Page({
   goToHospital: function() {
     // 跳转医院预约
     wx.navigateTo({
-      url: '/pages/hospital/list/index?type=hospital'
+      url: '/pages/organization/list/index?type=hospital'
     });
   },
 
   goToBeauty: function() {
     // 跳转美容预约
     wx.navigateTo({
-      url: '/pages/hospital/list/index?type=beauty'
+      url: '/pages/organization/list/index?type=beauty'
     });
   },
 

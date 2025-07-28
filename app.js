@@ -6,6 +6,6 @@ App({
     updateManager();
   },
   globalData: {
-    sharedPath: '/images/hospital/'
+    sharedPath: '/images/organization/'
   }
 });

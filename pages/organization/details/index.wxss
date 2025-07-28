@@ -15,21 +15,21 @@
   margin-right: 10px;
 }
 
-.hospital-card {
+.organization-card {
   display: flex;
   padding: 15px;
   position: relative;
   margin-bottom: 40rpx;
 }
 
-.hospital-icon {
+.organization-icon {
   width: 152rpx;
   height: 152rpx;
   border-radius: 50%;
   margin-right: 12px;
 }
 
-.hospital-info {
+.organization-info {
   margin-top: 10px;
 }
 
@@ -131,9 +131,9 @@
 
 /* 预约按钮 */
 .footer {
-    width: 80%;
-    margin: 40px auto 0;
-    padding: 10px 15px;
+  width: 80%;
+  margin: 10rpx auto 0;
+  padding: 10px 15px;
 }
 
 .appointment-btn {

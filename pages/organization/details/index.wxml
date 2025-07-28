@@ -4,15 +4,15 @@
     <view class="back-btn" bindtap="navigateBack">
       <image src="/images/back.png" />
     </view>
-    <view class="hospital-card">
-      <image class="hospital-icon" src="{{hospital.image}}" />
-      <view class="hospital-info">
-        <text class="name">{{hospital.name}}</text>
+    <view class="organization-card">
+      <image class="organization-icon" src="{{organization.image}}" />
+      <view class="organization-info">
+        <text class="name">{{organization.name}}</text>
         <view class="rating">
           <block wx:for="{{[1,2,3,4,5]}}" wx:key="*this">
-            <image src="{{item <= hospital.rating ? '../resource/hospital/star-full.png' : (item - 0.5 <= hospital.rating ? '../resource/hospital/star-half.png' : '../resource/hospital/star.png')}}" />
+            <image src="{{item <= organization.rating ? '../resource/organization/star-full.png' : (item - 0.5 <= organization.rating ? '../resource/organization/star-half.png' : '../resource/organization/star.png')}}" />
           </block>
-          <text class="score">{{hospital.rating}}分</text>
+          <text class="score">{{organization.rating}}分</text>
         </view>
       </view>
     </view>
@@ -22,11 +22,11 @@
   <view class="contact-info">
     <view class="item">
       <view>电话</view>
-      <text>{{hospital.phone}}</text>
+      <text>{{organization.phone}}</text>
     </view>
     <view class="item">
       <view>地址</view>
-      <text>{{hospital.address}}</text>
+      <text>{{organization.address}}</text>
     </view>
   </view>
 
@@ -36,7 +36,7 @@
       <view class="title">评论</view>
       <text class="more">全部</text>
     </view>  
-    <block wx:for="{{hospital.comments}}" wx:key="username">
+    <block wx:for="{{organization.comments}}" wx:key="username">
       <view class="comment-item">
         <view class="user-info">
           <text class="username">{{item.username}}</text>

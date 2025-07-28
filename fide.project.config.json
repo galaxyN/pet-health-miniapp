@@ -70,7 +70,7 @@
         },
         {
           "name": "示例页-商品分类",
-          "pathName": "pages/hospital/category/index",
+          "pathName": "pages/organization/category/index",
           "query": "",
           "scene": null
         },
@@ -82,19 +82,19 @@
         },
         {
           "name": "示例页-商品列表",
-          "pathName": "pages/hospital/list/index",
+          "pathName": "pages/organization/list/index",
           "query": "",
           "scene": null
         },
         {
           "name": "示例页-商品详情",
-          "pathName": "pages/hospital/details/index",
+          "pathName": "pages/organization/details/index",
           "query": "",
           "scene": null
         },
         {
           "name": "示例页-商品评论",
-          "pathName": "pages/hospital/comments/index",
+          "pathName": "pages/organization/comments/index",
           "query": "",
           "scene": null
         },
@@ -112,19 +112,19 @@
         },
         {
           "name": "示例页-搜索页",
-          "pathName": "pages/hospital/search/index",
+          "pathName": "pages/organization/search/index",
           "query": "",
           "scene": null
         },
         {
           "name": "示例页-搜索结果",
-          "pathName": "pages/hospital/result/index",
+          "pathName": "pages/organization/result/index",
           "query": "",
           "scene": null
         },
         {
           "name": "示例页-商品评价",
-          "pathName": "pages/hospital/comments/create/index",
+          "pathName": "pages/organization/comments/create/index",
           "query": "",
           "scene": null
         },

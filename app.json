@@ -28,8 +28,8 @@
       ]
     },
     {
-      "root": "pages/hospital",
-      "name": "hospital",
+      "root": "pages/organization",
+      "name": "organization",
       "pages": [
         "list/index",
         "details/index",

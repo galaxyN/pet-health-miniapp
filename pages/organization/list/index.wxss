@@ -29,7 +29,7 @@
 }
 
 /* 医院卡片样式 */
-.hospital-card {
+.organization-card {
   display: flex;
   padding: 30rpx 48rpx;
   position: relative;
@@ -39,19 +39,19 @@
   box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
 }
 
-.hospital-icon {
+.organization-icon {
   width: 152rpx;
   height: 152rpx;
   border-radius: 50%;
   margin-right: 12px;
 }
 
-.hospital-info {
+.organization-info {
   flex: 1;
   padding: 20rpx 0;
 }
 
-.hospital-name {
+.organization-name {
   font-size: 15px;
   color: #333;
   margin-bottom: 5px;

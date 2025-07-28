@@ -10,7 +10,7 @@ Page({
     avatar: defaultAvatarUrl,
     petName: '',
     breed: '',
-    petAge: '',
+    petAge: null,
     petWeight: '',
     type: '',
 
@@ -138,58 +138,63 @@ Page({
     })
   },
   // 保存宠物信息
-  async saveInfo(){
-    const userId = wx.getStorageSync('userInfo')?.id;
-    const { avatar,petName, breed, petAge, petWeight,genderIndex,kindIndex,kindOptions,type } = this.data;
-    const petType = kindOptions[kindIndex].value;
-    if(!petName || !petAge || !petWeight){
-      wx.showToast({
-        title: '请填写完整信息',
-        icon: 'none'
-      });
-      return;
-    }
-    let avatarBase64 = '';
-    if(avatar){
-      const convertRes = await this.convertToBase64(avatar);
-      if(convertRes.startsWith('data:image')){
-        avatarBase64 = convertRes;
-      }
-    }
-    let params = {
-      userId,
-      petName,
-      petType,
-      breed: breed,
-      gender: genderIndex===0 ? 'male' : 'female',
-      weight: +petWeight,
-      // age: +petAge,
-      avatarBase64: avatarBase64
-    };
-    console.log('params',params);
-    if(type === 'add'){
-      addPet(params).then(res => {
-        console.log(res);
-        if(res.success){
-          wx.showToast({ title: '添加成功' })
-          wx.navigateBack({ delta: 1 })
-        }
-      }).catch(err => {
-        console.error(err);
-      })
-    }
-    if(type === 'edit'){
-      const id = this.data.id;
-      params.id = id;
-      editPet(params).then(res => {
-        if(res.success){
-          wx.showToast({ title: '修改成功' })
-          wx.navigateBack({ delta: 1 })
-        }
-      }).catch(err => {
-        console.error(err);
-      })
-    }
-   
-  }
+  async saveInfo(){ 
+    const userId = wx.getStorageSync('userInfo')?.id; 
+    const { avatar,petName, breed, petAge, petWeight,genderIndex,kindIndex,kindOptions,type } = this.data; 
+    const petType = kindOptions[kindIndex].value; 
+    if(!petName || !petAge || !petWeight){ 
+      wx.showToast({ 
+        title: '请填写完整信息', 
+        icon: 'none' 
+      }); 
+      return; 
+    } 
+    let avatarBase64 = ''; 
+    if(avatar) { 
+      // 判断头像是否为后端返回的地址（假设后端返回的地址以 http 或 https 开头）
+      if (!avatar.startsWith('http')) { 
+        const convertRes = await this.convertToBase64(avatar); 
+        if(convertRes.startsWith('data:image')){ 
+          avatarBase64 = convertRes; 
+        } 
+      } else { 
+        avatarBase64 = avatar; 
+      } 
+    } 
+    let params = { 
+      userId, 
+      petName, 
+      petType, 
+      breed: breed, 
+      gender: genderIndex===0 ? 'male' : 'female', 
+      weight: +petWeight, 
+      age: +petAge, 
+      avatarBase64: avatarBase64 
+    }; 
+    console.log('params',params); 
+    if(type === 'add'){ 
+      addPet(params).then(res => { 
+        console.log(res); 
+        if(res.success){ 
+          wx.showToast({ title: '添加成功' }) 
+          wx.navigateBack({ delta: 1 }) 
+        } 
+      }).catch(err => { 
+        console.error(err); 
+      }) 
+    } 
+    if(type === 'edit'){ 
+      const id = this.data.id; 
+      params.id = id; 
+      editPet(params).then(res => { 
+        if(res.success){ 
+          wx.showToast({ title: '修改成功' }) 
+          wx.navigateBack({ delta: 1 }) 
+        } 
+      }).catch(err => { 
+        console.error(err); 
+      }) 
+    } 
+  
+  } 
 })

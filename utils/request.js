@@ -27,6 +27,21 @@ export function request(params) {
             reject(res.data)
           }
         } else {
+          if(res.data.code === 401){
+           wx.showModal({
+              title: '提示信息',
+              content: '您的登录已失效，请重新登录',
+              showCancel: false,
+              confirmText: '确定',
+              confirmColor: '#576B95',
+            }).then(res => {
+              if(res.confirm){
+                wx.navigateTo({
+                  url: '/pages/login/index',
+                });
+              }
+            })
+          }
           reject(res)
         }
       },
