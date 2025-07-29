@@ -1,5 +1,5 @@
 import themeChangeBehavior from 'tdesign-miniprogram/mixins/theme-change';
-
+import { getCategories,getProductList } from '../../services/shopping/product'
 Page({
   behaviors: [themeChangeBehavior],
   data: {
@@ -12,62 +12,14 @@ Page({
       {id: 'petSupplies', name: '宠物用品'},
     ],
     products: [
-      {
-        id: 1,
-        name: '优质狗粮 10kg',
-        price: 199,
-        sales: 1256,
-        image: 'http://117.72.219.186:8080/image/store/food/01.jpg',
-        category: 'food'
-      },
-      {
-        id: 2,
-        name: '猫咪逗猫棒',
-        price: 39,
-        sales: 856,
-        image: 'http://117.72.219.186:8080/image/store/food/02.jpg',
-        category: 'toy'
-      },
-      {
-        id: 3,
-        name: '宠物冬季保暖衣',
-        price: 89,
-        sales: 432,
-        image: 'http://117.72.219.186:8080/image/store/food/03.png',
-        category: 'petSupplies'
-      },
-      {
-        id: 4,
-        name: '宠物窝垫',
-        price: 159,
-        sales: 289,
-        image: 'http://117.72.219.186:8080/image/store/food/04.png',
-        category: 'petSupplies'
-      },
-      {
-        id: 5,
-        name: '宠物沐浴露',
-        price: 59,
-        sales: 678,
-        image: 'http://117.72.219.186:8080/image/store/food/05.png',
-        category: 'petSupplies'
-      },
-      {
-        id: 6,
-        name: '宠物零食礼包',
-        price: 129,
-        sales: 543,
-        image: 'http://117.72.219.186:8080/image/store/food/06.png',
-        category: 'food'
-      },
-      {
-        id: 7,
-        name: '宠物零食礼包',
-        price: 129,
-        sales: 543,
-        image: 'http://117.72.219.186:8080/image/store/food/07.png',
-        category: 'food'
-      }
+      // {
+      //   id: 1,
+      //   name: '优质狗粮 10kg',
+      //   price: 199,
+      //   sales: 1256,
+      //   image: 'http://117.72.219.186:8080/image/store/food/01.jpg',
+      //   category: 'food'
+      // }
     ],
     filteredProducts: []
   },
@@ -77,8 +29,32 @@ Page({
       filteredProducts: this.data.products
     });
   },
-  onShow(){
+  async onShow(){
     this.getTabBar().init();
+    await this.getCategory();
+    await this.getProductList();
+  },
+
+  getCategory(){
+    getCategories().then(res=>{
+      console.log('getCategories',res);
+      if(res.success){
+        console.log('res data',res.data);
+      }
+    })
+  },
+
+  getProductList(){
+    getProductList().then(res => {
+      console.log('getProductList',res);
+      if(res.success){
+        const { items } = res.data;
+        this.setData({ 
+          products : items,
+          filteredProducts: items 
+        })
+      }
+    })
   },
 
   goToCart(){

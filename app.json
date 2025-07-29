@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/pet/index",
     "pages/home/home",
+    "pages/pet/index",
     "pages/store/index",
     "pages/login/index",
     "pages/login/guide",

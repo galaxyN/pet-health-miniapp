@@ -3,47 +3,24 @@ import { getOrgList } from '../../../services/organization/organization';
 Page({
   data: {
     type: null,
+    searchVal: '',
     organizations: [
-      {
-        id: 1,
-        name: "瑞鹏宠物医院（中油店）",
-        icon: "../resource/organization/01.jpg",
-        rating: 4.5,
-        stars: [1, 1, 1, 1, 0.5],
-        type: 'hospital'
-      },
-      {
-        id: 2,
-        name: "祥兽宠物医院（海月店）",
-        icon: "../resource/organization/02.jpg",
-        rating: 4.6,
-        stars: [1, 1, 1, 1, 0],
-        type: 'hospital'
-      },
-      {
-        id: 3,
-        name: "瑞派宠物医院（福华南山分院）",
-        icon: "../resource/organization/03.png",
-        rating: 4.8,
-        stars: [1, 1, 1, 1, 0],
-        type: 'hospital'
-      },
-      {
-        id: 4,
-        name: "宠爱美容机构（南山店）",
-        icon: "../resource/organization/04.jpg",
-        rating: 4.7,
-        stars: [1, 1, 1, 1, 0.5],
-        type: 'beauty'
-      },
-      {
-        id: 5,
-        name: "萌宠造型屋（科技园店）",
-        icon: "../resource/organization/05.jpg",
-        rating: 4.9,
-        stars: [1, 1, 1, 1, 1],
-        type: 'beauty'
-      }
+      // {
+      //   id: 1,
+      //   name: "瑞鹏宠物医院（中油店）",
+      //   icon: "../resource/organization/01.jpg",
+      //   rating: 4.5,
+      //   stars: [1, 1, 1, 1, 0.5],
+      //   type: 'hospital'
+      // },
+      // {
+      //   id: 2,
+      //   name: "祥兽宠物医院（海月店）",
+      //   icon: "../resource/organization/02.jpg",
+      //   rating: 4.6,
+      //   stars: [1, 1, 1, 1, 0],
+      //   type: 'hospital'
+      // },
     ],
     filteredOrganizations: []
   },
@@ -56,7 +33,7 @@ Page({
       title = '美容机构';
     }
     wx.setNavigationBarTitle({ title });
-    this.setData({ type: type || 'organization' }, this.filterOrganizations);
+    this.setData({ type });
   },
 
   onShow(){
@@ -88,6 +65,7 @@ Page({
             }
           }
           this.setData({
+            filteredOrganizations: list,
             organizations: list
           })
         }else{
@@ -100,20 +78,26 @@ Page({
   },
 
   filterOrganizations: function() {
-    const { organizations, type } = this.data;
+    const { organizations,searchVal } = this.data;
+    console.log('searchVal', searchVal);
     let filtered = organizations;
-    if(type === 'hospital' || type === 'beauty'){
-      filtered = organizations.filter(item => item.type === type);
+    if(searchVal){
+      filtered = organizations.filter(item => item.name.includes(searchVal));
     }
     this.setData({ filteredOrganizations: filtered });
   },
 
   // 预约按钮点击事件
   handleAppointment: function(e) {
-    const organizationId = e.currentTarget.dataset.id;
+    const index = e.currentTarget.dataset.index;
+    const organization = this.data.organizations[index];
+    console.log('organization', organization);
     const { type } = this.data;
     wx.navigateTo({
-      url: `../details/index?id=${organizationId}&type=${type}`
+      url: `../details/index?type=${type}`,
+      success: (res) => {
+        res.eventChannel.emit('detailInfo', { organization })
+      }
     });
   },
 

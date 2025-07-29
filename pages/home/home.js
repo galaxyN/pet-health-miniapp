@@ -6,6 +6,11 @@ Page({
       desc: '马尔济斯',
       age: '4岁6个月',
       image: ''
+    },
+    petTypeMap:{
+      'cat': '猫',
+      'dog': '狗',
+      'other': '其他'
     }
   },
 
@@ -32,6 +37,7 @@ Page({
         if(list.length > 0){
           // 获取第一条宠物信息
           firstPet = list[0]
+          firstPet.age = Number(firstPet.age);
           this.setData({
             petInfo: firstPet
           });

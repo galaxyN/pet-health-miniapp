@@ -11,7 +11,7 @@
       <image class="pet-avatar" src="{{petInfo.avatarUrl}}"></image>
       <view class="pet-info">
         <view class="pet-name">{{petInfo.petName}}</view>
-        <view class="pet-detail">{{petInfo.desc}}，{{petInfo.age}}岁{{petInfo.weight}}kg</view>
+        <view class="pet-detail">{{petTypeMap[petInfo.petType]}} {{petInfo.age}}岁 {{petInfo.weight}}kg</view>
       </view>
       <view class="add-icon">+</view>
     </view>
