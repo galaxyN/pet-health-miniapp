@@ -17,7 +17,7 @@ export default [
   {
     icon: 'cart',
     text: '订单',
-    url: 'pages/cart/index',
+    url: 'pages/order/index',
   },
   {
     icon: 'user',

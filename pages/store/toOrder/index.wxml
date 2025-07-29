@@ -6,9 +6,9 @@
       <view class="edit-btn">编辑</view>
     </view>
     <view class="address-info">
-      <text class="name">{{address.name}}</text>
-      <text class="phone">{{address.phone}}</text>
-      <text class="address">{{address.detail}}</text>
+      <text class="name">{{address.receiverName}} {{address.province}}{{address.city}}{{address.district}}</text>
+      <text class="phone">{{address.receiverPhone}}</text>
+      <text class="address">{{address.detailedAddress}}</text>
     </view>
   </view>
 
@@ -17,8 +17,8 @@
     <view class="goods-title">物品</view>
     <block wx:for="{{orderItems}}" wx:key="spuId">
       <view class="goods-item">
-        <text class="goods-name">{{item.goodsName}}</text>
-        <text class="goods-price">￥{{item.payPrice}}</text>
+        <text class="goods-name">{{item.name}}</text>
+        <text class="goods-price">￥{{item.price}}</text>
       </view>
     </block>
   </view>

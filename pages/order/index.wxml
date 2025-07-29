@@ -1,10 +1,12 @@
 <!-- 分层购物车 -->
 <view class="order-list">
   <view class="order" wx:for="{{orderList}}" bindtap="toOrderDetail">
-    <view class="image-box">
-      <image src="{{item.image}}" />
-    </view>
-    <view class="order-info">{{item.name}}</view>
+    <block wx:for-item="order" wx:for="{{item.items}}" wx:key="id"> 
+      <view class="image-box">
+        <image src="{{order.productImage}}" />
+      </view>
+      <view class="order-info">{{order.productName}}</view>
+    </block>
     <view class="icon">
       <t-icon name="chevron-right" color="#666" size="48rpx" />
     </view>  

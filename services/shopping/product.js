@@ -19,10 +19,9 @@ export function getProductList(params) {
 }
 
 // 获取商品详情
-export function getProducInfo(params) {
+export function getProducInfo(id) {
   return request({
-    url: `/shopping/products/${id}`,
+    url: `/api/shopping/products/${id}`,
     method: 'get',
-    data: params
   })
 }

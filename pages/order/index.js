@@ -1,6 +1,6 @@
 import Dialog from 'tdesign-miniprogram/dialog/index';
 import Toast from 'tdesign-miniprogram/toast/index';
-import { fetchCartGroupData } from '../../services/cart/cart';
+import { getOrderList } from '../../services/shopping/order';
 
 Page({
   data: {
@@ -30,15 +30,30 @@ Page({
   // 调用自定义tabbar的init函数，使页面与tabbar激活状态保持一致
   onShow() {
     this.getTabBar().init();
-  },
-
-  onLoad() {
     this.refreshData();
   },
 
-  refreshData() {
-    
+  onLoad() {
   },
+
+  refreshData() {
+    this.getOrderList();
+  },
+
+  getOrderList() {
+    getOrderList({
+      page: 1,
+      pageSize: 10
+    }).then(res => {
+      if (res && res.success) {
+        console.log('获取订单列表',res.data);
+        this.setData({
+          orderList: res.data.items
+        });
+      }
+    });
+  },
+
   toOrderDetail(){
     wx.navigateTo({
       url: '/pages/cart/orderInfo/index',

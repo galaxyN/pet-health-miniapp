@@ -14,11 +14,12 @@
 
     <!-- 商品基本信息 -->
     <view class="goods-info">
-        <view class="title">优质狗粮 10kg 全犬种通用 营养均衡配方</view>
+        <view class="title">{{productInfo.name}}</view>
+        <view class="title">{{productInfo.description}}</view>
         <view class="price-section">
-            <text class="current-price">¥199</text>
-            <!-- <text class="original-price">¥259</text>
-            <text class="discount">7.7折</text> -->
+            <text class="current-price">¥{{productInfo.price}}</text>
+            <text class="original-price">¥{{productInfo.originalPrice}}</text>
+            <!-- <text class="discount">{{productInfo.discount}}折</text> -->
         </view>
     </view>
 

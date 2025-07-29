@@ -1,5 +1,8 @@
+import { getProducInfo } from '../../../services/shopping/product'
+
 Page({
   data: {
+    productId: null,
     detailContent: `
       <div style="color:#333;font-size:14px;">
         <p><strong>产品特点：</strong></p>
@@ -34,6 +37,15 @@ Page({
         selected: 0
       }
     ],
+    productInfo: {
+      name: '优质狗粮 10kg 全犬种通用 营养均衡配方',
+      price: 19900, // 单位：分
+      stock: 100,
+      images: [
+        'http://117.72.219.186:8080/image/store/food/01.jpg',
+        'http://117.72.219.186:8080/image/store/food/02.jpg',
+      ],
+    },
     quantity: 1,
     isFavorite: false,
     comment: {
@@ -47,11 +59,38 @@ Page({
   onLoad(options) {
     // 模拟从服务器加载商品数据
     this.setData({
-      goodsId: options.id || '1'
+      productId: options.id || 0
+    },() => {
+      this.getProductDetail(options.id);
     });
     
     // 初始化购物车角标
-    this.updateCartBadge();
+    this.updateCartBadge(options.id);
+  },
+
+  onShow(){
+  },
+
+  getProductDetail(id){
+    getProducInfo(id).then(res => {
+      // console.log('getProducInfo',res);
+      if(res.success){
+        console.log('data',res.data);
+        const { name, originalPrice,price, images,description,sales,petType } = res.data;
+        const productInfo = {
+          name,
+          originalPrice,
+          price,
+          description,
+          images,
+          sales,
+          petType
+        }
+        this.setData({
+          productInfo
+        })
+      }
+    })
   },
 
   // 选择规格
@@ -90,9 +129,9 @@ Page({
 
   // 加入购物车
   async addToCart() {
-    const { goodsId, specs, quantity, detailContent } = this.data;
+    const { productId, specs, quantity, detailContent } = this.data;
     const goodsInfo = {
-      id: goodsId,
+      id: productId,
       title: '优质狗粮 10kg 全犬种通用 营养均衡配方',
       price: 19900, // 单位：分
       image: 'http://117.72.219.186:8080/image/store/food/01.jpg',
@@ -103,7 +142,7 @@ Page({
 
     try {
       const cart = wx.getStorageSync('cart') || [];
-      const existingIndex = cart.findIndex(item => item.id === goodsId && item.spec === goodsInfo.spec);
+      const existingIndex = cart.findIndex(item => item.id === productId && item.spec === goodsInfo.spec);
       
       if (existingIndex > -1) {
         cart[existingIndex].quantity += quantity;
@@ -147,8 +186,18 @@ Page({
 
   // 立即购买
   buyNow() {
+    const { name,price } = this.data.productInfo
+    const orderInfo = {
+      productId: +this.data.productId,
+      quantity: 1,
+      name,
+      price
+    }
     wx.navigateTo({
-      url: '/pages/order/confirm'
+      url: '/pages/store/toOrder/index',
+      success(res){
+        res.eventChannel.emit('orderInfo', { orderInfo })
+      }
     });
   }
 })

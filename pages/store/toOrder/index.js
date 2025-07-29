@@ -1,4 +1,6 @@
 const { genSettleDetail } = require('../../../model/order/orderConfirm');
+import { createOrders } from '../../../services/shopping/order';
+import { getAddressList } from '../../../services/usercenter/address';
 
 Page({
   data: {
@@ -9,7 +11,7 @@ Page({
     // 订单信息
     orderItems: [],
     totalAmount: 0,
-    freight: 0,
+    freight: 12,
     discountAmount: 0,
     couponAmount: 0,
     finalAmount: 0,
@@ -23,14 +25,14 @@ Page({
   onLoad(options) {
     // 接收购物车传递的数据
     const eventChannel = this.getOpenerEventChannel();
-    eventChannel.on('checkoutData', (data) => {
-      this.processCheckoutData(data);
+    const that = this;
+    eventChannel.on('orderInfo', ({ orderInfo }) => {
+      console.log('orderInfo',orderInfo);
+      that.processOrderData(orderInfo);
     });
-    
-    // 如果没有事件通道数据，尝试从本地存储获取
-    if (!this.data.orderItems.length) {
-      this.loadFromStorage();
-    }
+    // eventChannel.on('orderInfo', (data) => {
+    //   this.processCheckoutData(data);
+    // });
     
     // 加载地址列表
     this.loadAddressList();
@@ -39,6 +41,24 @@ Page({
   onShow() {
     // 重新加载地址（可能从地址选择页面返回）
     this.loadAddressList();
+  },
+
+  // 处理立即下单数据
+  processOrderData(data){
+    if (!data) return;
+    const orderItems = [{
+      productId: data.productId,
+      quantity:  data.quantity,
+      name: data.name,
+      price: data.price
+    }]
+    let finalAmount = 0;
+    orderItems.forEach(item => {
+      const totalPrice = item.quantity * item.price
+      finalAmount += totalPrice
+    })
+    finalAmount += this.data.freight - this.data.discountAmount - this.data.couponAmount
+    this.setData({ orderItems, finalAmount })
   },
 
   // 处理购物车数据
@@ -107,37 +127,16 @@ Page({
 
   // 加载地址列表
   loadAddressList() {
-    // 模拟地址数据，实际应从API获取
-    const mockAddressList = [
-      {
-        id: 1,
-        name: '张三',
-        phone: '13800138000',
-        province: '广东省',
-        city: '深圳市',
-        district: '南山区',
-        detail: '科技园中区一路腾讯大厦',
-        isDefault: true
-      },
-      {
-        id: 2,
-        name: '李四',
-        phone: '13900139000',
-        province: '北京市',
-        city: '北京市',
-        district: '海淀区',
-        detail: '中关村大街1号',
-        isDefault: false
+    const userId = wx.getStorageSync('userInfo').id;
+    getAddressList(userId).then(res => {
+      if (res.success) {
+        console.log('加载地址列表',res.data);
+        this.setData({
+          addressList: res.data,
+          address: this.data.address || res.data[0]
+        });
       }
-    ];
-
-    const defaultAddress = mockAddressList.find(item => item.isDefault) || mockAddressList[0];
-    
-    this.setData({
-      addressList: mockAddressList,
-      address: this.data.address || defaultAddress
-    });
-
+    })
     // 如果有订单数据，重新计算
     if (this.data.orderItems.length) {
       this.recalculateOrder();
@@ -207,7 +206,6 @@ Page({
       });
       return;
     }
-
     if (!this.data.orderItems.length) {
       wx.showToast({
         title: '订单商品为空',
@@ -215,38 +213,42 @@ Page({
       });
       return;
     }
-
     this.setData({ loading: true });
 
     try {
-      // 构建订单数据
-      const orderData = {
-        address: this.data.address,
-        items: this.data.orderItems,
-        totalAmount: this.data.totalAmount,
-        freight: this.data.freight,
-        discountAmount: this.data.discountAmount,
-        couponAmount: this.data.couponAmount,
-        finalAmount: this.data.finalAmount,
-        paymentMethod: this.data.paymentMethod,
+      // 构建后端需要的订单数据
+      const orderPayload = {
+        productId: this.data.orderItems[0].productId,
+        addressId: this.data.address.addressId,
+        quantity: this.data.orderItems.reduce((sum, item) => sum + item.quantity, 0),
         remark: this.data.remark,
-        createTime: new Date().toISOString()
       };
-
-      // 模拟API提交
-      await this.submitOrderToServer(orderData);
-      
-      // 清除本地存储
-      wx.removeStorageSync('orderData');
-      
-      // 跳转到订单成功页面
-      wx.redirectTo({
-        url: `/pages/order/success?orderId=${this.generateOrderId()}`
-      });
-      
+      // 调用真实下单接口
+      const res = await createOrders(orderPayload);
+      console.log('下单接口',res);
+      if (res && res.success) {
+        // 清除本地存储
+        wx.removeStorageSync('orderData');
+        wx.showToast({
+          title: '下单成功',
+          icon: 'success'
+        });
+        const t = setTimeout(() => {
+          // 跳转到订单成功页面，带上后端返回的订单号
+          wx.switchTab({
+            url: `/pages/order/index?orderId=${res.data.id || ''}`
+          });
+          clearTimeout(t);
+        }, 1500);
+      } else {
+        wx.showToast({
+          title: res && res.message ? res.message : '提交失败，请重试',
+          icon: 'none'
+        });
+      }
     } catch (error) {
       wx.showToast({
-        title: '提交失败，请重试',
+        title: error && error.message ? error.message : '提交失败，请重试',
         icon: 'none'
       });
     } finally {

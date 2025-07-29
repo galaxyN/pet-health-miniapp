@@ -8,9 +8,9 @@
     "pages/usercenter/index",
     "pages/comments/index",
     "pages/comments/addComment/index",
-    "pages/cart/index",
+    "pages/order/index",
     "pages/login/register/register",
-    "pages/cart/orderInfo/index",
+    "pages/order/orderInfo/index",
     "pages/pet/editPet/index",
     "pages/store/goodsDetail/index",
     "pages/store/cart/index",
@@ -75,8 +75,8 @@
         "text": "宠物"
       },
       {
-        "pagePath": "pages/cart/index",
-        "text": "购物车"
+        "pagePath": "pages/order/index",
+        "text": "订单"
       },
       {
         "pagePath": "pages/usercenter/index",

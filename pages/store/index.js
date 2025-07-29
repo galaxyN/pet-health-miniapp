@@ -3,13 +3,13 @@ import { getCategories,getProductList } from '../../services/shopping/product'
 Page({
   behaviors: [themeChangeBehavior],
   data: {
-    activeCategory: 'all',
+    activeCategory: 0,
     searchValue: '',
     categories: [
-      {id: 'all', name: '全部'},
-      {id: 'food', name: '食物'},
-      {id: 'toy', name: '玩具'},
-      {id: 'petSupplies', name: '宠物用品'},
+      // {id: 'all', name: '全部'},
+      // {id: 'food', name: '食物'},
+      // {id: 'toy', name: '玩具'},
+      // {id: 'petSupplies', name: '宠物用品'},
     ],
     products: [
       // {
@@ -40,6 +40,15 @@ Page({
       console.log('getCategories',res);
       if(res.success){
         console.log('res data',res.data);
+        const list = res.data.items;
+        const categories = list.map(item => ({
+          id: item.categoryId,
+          name: item.name
+        }));
+        categories.unshift({id: 0, name: '全部'});
+        this.setData({
+          categories: categories
+        })
       }
     })
   },
@@ -64,15 +73,16 @@ Page({
   },
   // 切换分类
   switchCategory(e) {
-    const category = e.currentTarget.dataset.category;
+    const categoryId = e.currentTarget.dataset.id;
     let filteredProducts = this.data.products;
-    
-    if (category !== 'all') {
-      filteredProducts = this.data.products.filter(item => item.category === category);
+    if (categoryId !== 0) {
+      filteredProducts = this.data.products.filter(item => item.categoryId === categoryId);
+    } else {
+      filteredProducts = this.data.products;
     }
 
     this.setData({
-      activeCategory: category,
+      activeCategory: categoryId,
       filteredProducts: filteredProducts
     });
   },
@@ -101,6 +111,7 @@ Page({
   // 跳转商品详情
   goToDetail(e) {
     const id = e.currentTarget.dataset.id;
+    console.log('id',id);
     wx.navigateTo({
       url: `/pages/store/goodsDetail/index?id=${id}`
     });
