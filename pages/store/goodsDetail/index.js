@@ -1,5 +1,5 @@
 import { getProducInfo } from '../../../services/shopping/product'
-
+import { baseUrl } from '../../../utils/baseConfig'
 Page({
   data: {
     productId: null,
@@ -76,7 +76,8 @@ Page({
       // console.log('getProducInfo',res);
       if(res.success){
         console.log('data',res.data);
-        const { name, originalPrice,price, images,description,sales,petType } = res.data;
+        let { name, originalPrice,price, images,description,sales,petType,mainImage } = res.data;
+        mainImage = baseUrl + mainImage        
         const productInfo = {
           name,
           originalPrice,
@@ -84,7 +85,8 @@ Page({
           description,
           images,
           sales,
-          petType
+          petType,
+          mainImage
         }
         this.setData({
           productInfo

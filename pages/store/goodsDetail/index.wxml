@@ -2,7 +2,7 @@
     <!-- 商品图片轮播 -->
     <swiper class="goods-swiper" indicator-dots autoplay interval="3000">
         <swiper-item>
-            <image src="http://117.72.219.186:8080/image/store/food/01.jpg" mode="aspectFill"></image>
+            <image src="{{productInfo.mainImage}}" mode="aspectFill"></image>
         </swiper-item>
         <!-- <swiper-item>
             <image src="http://117.72.219.186:8080/image/store/food/02.jpg" mode="aspectFill"></image>

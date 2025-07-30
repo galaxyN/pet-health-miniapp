@@ -1,6 +1,7 @@
 import Dialog from 'tdesign-miniprogram/dialog/index';
 import Toast from 'tdesign-miniprogram/toast/index';
 import { getOrderList } from '../../services/shopping/order';
+import { baseUrl } from '../../utils/baseConfig'
 
 Page({
   data: {
@@ -47,8 +48,9 @@ Page({
     }).then(res => {
       if (res && res.success) {
         console.log('获取订单列表',res.data);
+        const list = res.data.items;
         this.setData({
-          orderList: res.data.items
+          orderList: list
         });
       }
     });
@@ -56,7 +58,7 @@ Page({
 
   toOrderDetail(){
     wx.navigateTo({
-      url: '/pages/cart/orderInfo/index',
+      url: '/pages/order/orderInfo/index',
     })
   }
 

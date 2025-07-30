@@ -1,5 +1,7 @@
 import themeChangeBehavior from 'tdesign-miniprogram/mixins/theme-change';
 import { getCategories,getProductList } from '../../services/shopping/product'
+import { baseUrl } from '../../utils/baseConfig'
+
 Page({
   behaviors: [themeChangeBehavior],
   data: {
@@ -43,11 +45,28 @@ Page({
         const list = res.data.items;
         const categories = list.map(item => ({
           id: item.categoryId,
+          parentId: item.parentId,
           name: item.name
         }));
-        categories.unshift({id: 0, name: '全部'});
+        const temp = []
+        categories.sort((a,b)=>{
+          return a.parentId - b.parentId
+        })
+        categories.forEach(item => {
+          if(!item.parentId){
+            item.children = []
+            temp.push(item)
+          }else{
+            const index = temp.findIndex(t=>t.id === item.parentId)
+            if(index > -1){
+              temp[index].children.push(item)
+            }
+          }
+        })
+        console.log('temp',temp);
+        temp.unshift({id: 0, name: '全部'});
         this.setData({
-          categories: categories
+          categories: temp
         })
       }
     })
@@ -58,6 +77,9 @@ Page({
       console.log('getProductList',res);
       if(res.success){
         const { items } = res.data;
+        items.forEach(item => {
+          item.mainImage = baseUrl + item.mainImage
+        })
         this.setData({ 
           products : items,
           filteredProducts: items 

@@ -14,9 +14,9 @@
 }
 /* 页面容器 */
 .market-container {
-    display: flex;
-    flex-direction: column;
-    background-color: #f7f7f7;
+  background-color: #f7f7f7;
+  box-sizing: border-box;
+  overflow-y: hidden;
 }
 
 /* 搜索栏 */
@@ -81,17 +81,22 @@
 
 /* 商品列表 */
 .product-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30rpx;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 0;
+    justify-content: space-between;
+    gap: 20rpx;
     padding: 24rpx 30rpx;
+    height: 55vh;
     overflow-y: auto;
 }
 
 .product-item {
-    background: white;
-    border-radius: 16rpx;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 47%;
+  flex-grow: 0;
+  background: white;
+  border-radius: 16rpx;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .product-image {
