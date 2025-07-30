@@ -91,8 +91,8 @@ Page({
             setToken(token);
             accountProfile().then((profileData) => {
               console.log('accountProfile', profileData);
-              const { id,nickname,username,avatarUrl } = profileData.data;
-              wx.setStorageSync('userInfo', { id,nickname,username,avatarUrl });
+              const { id,nickname,username,avatarUrl,phone } = profileData.data;
+              wx.setStorageSync('userInfo', { id,nickname,username,avatarUrl,phone });
               wx.showToast({
                 title: "登录成功",
                 icon: "success"
