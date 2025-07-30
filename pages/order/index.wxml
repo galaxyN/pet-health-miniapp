@@ -1,15 +1,17 @@
 <!-- 分层购物车 -->
 <view class="order-list">
-  <view class="order" wx:for="{{orderList}}" bindtap="toOrderDetail">
-    <block wx:for-item="order" wx:for="{{item.items}}" wx:key="id"> 
-      <view class="image-box">
-        <image src="{{order.productImage}}" />
+  <view class="order" wx:for="{{orderList}}">
+    <view class="order-items">
+      <view class="order-item" wx:for="{{item.items}}" wx:for-item="order"  bindtap="toOrderDetail" data-order="{{order}}" data-orderNo="{{item.orderNo}}">
+        <view class="image-box">
+          <image src="{{order.productImage}}" />
+        </view>
+        <view class="order-info">{{order.productName}}</view>
+        <view class="icon">
+          <t-icon name="chevron-right" color="#666" size="48rpx" />
+        </view>  
       </view>
-      <view class="order-info">{{order.productName}}</view>
-    </block>
-    <view class="icon">
-      <t-icon name="chevron-right" color="#666" size="48rpx" />
-    </view>  
+    </view>
   </view>
 </view>
 <t-toast id="t-toast" />

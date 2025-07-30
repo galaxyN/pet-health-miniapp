@@ -1,0 +1,33 @@
+<view class="user">
+  <view class="user-head">
+    <image src="http://117.72.219.186:8080/image/cat-1.jpeg" bindtap="showUser"/>
+  </view>
+  <view class="user-info">
+    <view class="user-info-item">
+      <text class="label">用户名</text>
+      <input class="value-input" value="{{ user.nickname }}" bindinput="onNicknameInput" placeholder="请输入用户名" />
+    </view>
+    <view class="user-info-item">
+      <text class="label">电话</text>
+      <input class="value-input" value="{{ user.phone }}" bindinput="onPhoneInput" placeholder="请输入电话号码" type="number" />
+    </view>
+    <view class="user-info-item">
+      <text class="label">收货地址</text>
+      <input class="value-input" disabled value="{{ user.address }}" bindinput="onAddressInput" placeholder="请输入收货地址" />
+      <view class="icon">
+        <t-icon name="chevron-right" bindtap="goToAddress" color="#666" size="48rpx" />
+      </view>
+    </view>
+  </view>
+  <view class="save-button-container">
+    <button class="save-button" bindtap="saveUserInfo">保存信息</button>
+  </view>
+</view>
+<t-dialog
+  visible="{{showLogin}}"
+  title="未登录，请先登录"
+  confirm-btn="{{ confirmBtn }}"
+  cancel-btn="取消"
+  bind:confirm="confirmAction"
+  bind:cancel="closeDialog"
+/>

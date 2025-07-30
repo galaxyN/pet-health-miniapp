@@ -28,9 +28,9 @@ export function fetchRegister(params) {
 
 /** 获取用户信息 */
 export function accountProfile(params) {
-    return request({
-        url: '/api/account/profile',
-        method: 'get',
-        data: params
-    })
+  return request({
+    url: '/api/account/profile',
+    method: 'get',
+    data: params
+  })
 }

@@ -1,4 +1,5 @@
 import { getProducInfo } from '../../../services/shopping/product'
+import { addToCart } from '../../../services/shopping/cart'
 import { baseUrl } from '../../../utils/baseConfig'
 Page({
   data: {
@@ -131,42 +132,23 @@ Page({
 
   // 加入购物车
   async addToCart() {
-    const { productId, specs, quantity, detailContent } = this.data;
-    const goodsInfo = {
-      id: productId,
-      title: '优质狗粮 10kg 全犬种通用 营养均衡配方',
-      price: 19900, // 单位：分
-      image: 'http://117.72.219.186:8080/image/store/food/01.jpg',
-      quantity: quantity,
-      spec: specs.map(spec => spec.options[spec.selected]).join(' '),
-      selected: true
-    };
-
-    try {
-      const cart = wx.getStorageSync('cart') || [];
-      const existingIndex = cart.findIndex(item => item.id === productId && item.spec === goodsInfo.spec);
-      
-      if (existingIndex > -1) {
-        cart[existingIndex].quantity += quantity;
-      } else {
-        cart.push(goodsInfo);
+    const { productId, quantity } = this.data;
+    const params = { productId,quantity };
+    addToCart(params).then(res => {
+      if(res.success){
+        wx.showToast({
+          title: '加入购物车成功',
+          icon: 'success'
+        });
+        // 更新购物车数量显示
+        this.updateCartBadge();
       }
-      
-      wx.setStorageSync('cart', cart);
-      
+    }).catch(err => {
       wx.showToast({
-        title: '已加入购物车',
-        icon: 'success'
-      });
-      
-      // 更新购物车数量显示
-      this.updateCartBadge();
-    } catch (error) {
-      wx.showToast({
-        title: '添加失败，请重试',
+        title: '加入购物车失败，请重试',
         icon: 'none'
       });
-    }
+    })
   },
 
   // 更新购物车角标

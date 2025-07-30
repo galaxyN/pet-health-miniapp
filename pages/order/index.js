@@ -56,9 +56,15 @@ Page({
     });
   },
 
-  toOrderDetail(){
+  toOrderDetail(e){
+    const order = e.currentTarget.dataset.order;
+    const orderNo = e.currentTarget.dataset.orderno;
+    order.orderNo = orderNo;
     wx.navigateTo({
       url: '/pages/order/orderInfo/index',
+      success: (res) => {
+        res.eventChannel.emit('getOrderInfo', { order })
+      }
     })
   }
 

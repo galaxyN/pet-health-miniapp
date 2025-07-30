@@ -13,6 +13,7 @@
 .goods-item {
   display: flex;
   align-items: center;
+  width: 100%;
   margin-bottom: 15px;
   height: 200rpx;
   background: #fff;
@@ -31,7 +32,9 @@
 }
 
 .goods-info{
-  padding: 30rpx 20rpx;
+  margin-top: 20rpx;
+  padding: 10rpx 20rpx;
+  flex: 1;
   box-sizing: border-box;
 }
 

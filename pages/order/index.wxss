@@ -13,6 +13,18 @@
   margin-bottom: 30rpx;
   position: relative;
 }
+.order-items{
+  width: 100%;
+}
+.order-item{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+  width: 100%;
+}
+.order-item:last-child{
+  border-bottom: none;
+}
 
 .order image-box{
   width: 100rpx;
@@ -26,8 +38,4 @@
 }
 .order .order-info{
   width: 75%;
-}
-.order .icon{
-  position: absolute;
-  right: 10rpx;
 }

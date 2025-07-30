@@ -1,0 +1,74 @@
+.user{
+  padding: 20rpx;
+  background: #f8f8f8;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.user-head{
+  margin: 20rpx 0;
+  display: flex;
+  justify-content: center;
+}
+.user-head image{
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+}
+
+.user-info{
+  width: 95%;
+  margin: 40rpx auto;
+}
+
+.user-info-item{
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 20rpx 40rpx;
+  margin-bottom: 40rpx;
+  height: 80rpx;
+  position: relative;
+}
+.user-info-item .label{
+  font-size: 13px;
+}
+.user-info-item .value{
+  font-size: 15px;
+  margin-top: 10rpx;
+  font-weight: 600;
+}
+
+.user-info-item .value-input{
+  font-size: 15px;
+  margin-top: 10rpx;
+  font-weight: 600;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+.user-info-item  .icon{
+  position: absolute;
+  right: 5rpx;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.save-button-container{
+  margin-top: 200rpx;
+  padding: 0 20rpx;
+}
+
+.save-button{
+  width: 100%;
+  background: #000000;
+  color: white;
+  border-radius: 50rpx;
+  padding: 15rpx 0;
+  font-size: 16px;
+  border: none;
+}
+
+.save-button:active{
+  background: #333333;
+}

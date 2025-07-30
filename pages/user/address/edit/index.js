@@ -1,5 +1,5 @@
 import Toast from 'tdesign-miniprogram/toast/index';
-import { fetchDeliveryAddress } from '../../../../services/address/fetchAddress';
+import { fetchDeliveryAddress } from '../../../../services/address/address';
 import { areaData } from '../../../../config/index';
 import { resolveAddress, rejectAddress } from '../../../../services/address/list';
 
@@ -21,17 +21,17 @@ Page({
       addressId: '',
       addressTag: '',
       cityCode: '',
-      cityName: '',
+      city: '',
       countryCode: '',
       countryName: '',
-      detailAddress: '',
+      detailedAddress: '',
       districtCode: '',
-      districtName: '',
+      district: '',
       isDefault: false,
-      name: '',
-      phone: '',
+      receiverName: '',
+      receiverPhone: '',
       provinceCode: '',
-      provinceName: '',
+      province: '',
       isEdit: false,
       isOrderDetail: false,
       isOrderSure: false,
@@ -66,8 +66,9 @@ Page({
     }
   },
   getAddressDetail(id) {
-    fetchDeliveryAddress(id).then((detail) => {
-      this.setData({ locationState: detail }, () => {
+    fetchDeliveryAddress(id).then((res) => {
+      console.log('getAddressDetail detail', res.data);
+      this.setData({ locationState: res.data }, () => {
         const { isLegal, tips } = this.onVerifyInputLegal();
         this.setData({
           submitActive: isLegal,
@@ -162,49 +163,48 @@ Page({
   },
 
   onVerifyInputLegal() {
-    const { name, phone, detailAddress, districtName } = this.data.locationState;
+    const { receiverName, receiverPhone, detailedAddress, district } = this.data.locationState;
     const prefixPhoneReg = String(this.properties.phoneReg || innerPhoneReg);
     const prefixNameReg = String(this.properties.nameReg || innerNameReg);
     const nameRegExp = new RegExp(prefixNameReg);
     const phoneRegExp = new RegExp(prefixPhoneReg);
-
-    if (!name || !name.trim()) {
+    if (!receiverName || !receiverName.trim()) {
       return {
         isLegal: false,
         tips: '请填写收货人',
       };
     }
-    if (!nameRegExp.test(name)) {
+    if (!nameRegExp.test(receiverName)) {
       return {
         isLegal: false,
         tips: '收货人仅支持输入中文、英文（区分大小写）、数字',
       };
     }
-    if (!phone || !phone.trim()) {
+    if (!receiverPhone || !receiverPhone.trim()) {
       return {
         isLegal: false,
         tips: '请填写手机号',
       };
     }
-    if (!phoneRegExp.test(phone)) {
+    if (!phoneRegExp.test(receiverPhone)) {
       return {
         isLegal: false,
         tips: '请填写正确的手机号',
       };
     }
-    if (!districtName || !districtName.trim()) {
+    if (!district || !district.trim()) {
       return {
         isLegal: false,
         tips: '请选择省市区信息',
       };
     }
-    if (!detailAddress || !detailAddress.trim()) {
+    if (!detailedAddress || !detailedAddress.trim()) {
       return {
         isLegal: false,
         tips: '请完善详细地址',
       };
     }
-    if (detailAddress && detailAddress.trim().length > 50) {
+    if (detailedAddress && detailedAddress.trim().length > 50) {
       return {
         isLegal: false,
         tips: '详细地址不能超过50个字符',
@@ -320,11 +320,11 @@ Page({
       name: locationState.name,
       countryName: locationState.countryName,
       countryCode: locationState.countryCode,
-      provinceName: locationState.provinceName,
+      province: locationState.province,
       provinceCode: locationState.provinceCode,
       cityName: locationState.cityName,
       cityCode: locationState.cityCode,
-      districtName: locationState.districtName,
+      district: locationState.districtName,
       districtCode: locationState.districtCode,
       detailAddress: locationState.detailAddress,
       isDefault: locationState.isDefault === 1 ? 1 : 0,

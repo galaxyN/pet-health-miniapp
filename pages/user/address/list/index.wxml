@@ -6,7 +6,7 @@
         extra-space="{{extraSpace}}"
         class-prefix="ym"
         address="{{address}}"
-        data-id="{{address.id}}"
+        data-id="{{address.addressId}}"
         bind:onSelect="selectHandle"
         bind:onDelete="deleteAddressHandle"
         bind:onEdit="editAddressHandle"

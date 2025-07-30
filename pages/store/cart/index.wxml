@@ -3,12 +3,12 @@
   <view class="goods-list">
     <view class="goods-item" wx:for="{{cartList}}" wx:key="id">
 		  <view class="goods-image">
-        <image src="{{item.image}}" mode="aspectFit" />
+        <image src="{{item.product.mainImage}}" mode="aspectFit" />
       </view>
       <view class="goods-info">
         <view class="goods-introduce">
-          <view class="goods-name">{{item.name}}</view>
-          <view class="goods-price">￥{{item.price}}</view>
+          <view class="goods-name">{{item.product.name}}</view>
+          <view class="goods-price">￥{{item.product.price}}</view>
         </view>
         <view class="operation">
           <view class="quantity-control">
@@ -30,7 +30,7 @@
         <view class="total">
             <text>总计：￥{{totalPrice}}</text>
         </view>
-        <view class="num">3件物品</view>
+        <view class="num" v-if="cartList.length > 0">{{cartList.length}}件物品</view>
     </view>
     <view>
         <t-button t-class="checkout-btn" size="large" bindtap="checkout">结算</t-button>

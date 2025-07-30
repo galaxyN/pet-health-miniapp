@@ -7,7 +7,8 @@ Page({
     // 地址信息
     address: null,
     addressList: [],
-    
+    type: '',
+
     // 订单信息
     orderItems: [],
     totalAmount: 0,
@@ -30,12 +31,13 @@ Page({
       console.log('orderInfo',orderInfo);
       that.processOrderData(orderInfo);
     });
-    // eventChannel.on('orderInfo', (data) => {
-    //   this.processCheckoutData(data);
-    // });
-    
-    // 加载地址列表
-    this.loadAddressList();
+    if(options.type === 'cart'){
+      this.setData({ type: 'cart' })
+    }
+    eventChannel.on('cartInfo', ({ cartList }) => {
+      console.log('cartList',cartList);
+      that.processCheckoutData(cartList);
+    })
   },
 
   onShow() {
@@ -62,42 +64,21 @@ Page({
   },
 
   // 处理购物车数据
-  processCheckoutData(data) {
-    if (!data || !data.items) return;
-    
-    const goodsRequestList = data.items.map(item => ({
-      spuId: item.id,
-      skuId: item.id,
-      title: item.title,
-      primaryImage: item.image,
-      price: item.price,
-      quantity: item.quantity,
-      specInfo: item.spec || '',
-      storeId: '1000',
-      roomId: '0'
+  processCheckoutData(cartList) {
+    if (!cartList || cartList.length === 0) return;
+    const orderItems = cartList.map(item => ({
+      id: item.id,
+      quantity:  item.quantity,
+      name: item.product.name,
+      price: item.product.price,
     }));
-
-    const settleData = genSettleDetail({
-      goodsRequestList,
-      userAddressReq: this.data.address
-    });
-
-    if (settleData.success) {
-      const { data } = settleData;
-      
-      this.setData({
-        orderItems: data.storeGoodsList[0]?.skuDetailVos || [],
-        totalAmount: Number(data.totalSalePrice) / 100,
-        freight: Number(data.totalDeliveryFee) / 100,
-        discountAmount: Number(data.totalDiscountAmount) / 100,
-        couponAmount: Number(data.totalCouponAmount) / 100,
-        finalAmount: Number(data.totalPayAmount) / 100,
-        loading: false
-      });
-      
-      // 保存到本地存储，防止页面刷新丢失
-      this.saveToStorage();
-    }
+    let finalAmount = 0;
+    orderItems.forEach(item => {
+      const totalPrice = item.quantity * item.price
+      finalAmount += totalPrice
+    })
+    finalAmount += this.data.freight - this.data.discountAmount - this.data.couponAmount
+    this.setData({ orderItems, finalAmount })
   },
 
   // 从本地存储加载
@@ -216,14 +197,27 @@ Page({
     this.setData({ loading: true });
 
     try {
-      // 构建后端需要的订单数据
-      const orderPayload = {
-        productId: this.data.orderItems[0].productId,
-        addressId: this.data.address.addressId,
-        quantity: this.data.orderItems.reduce((sum, item) => sum + item.quantity, 0),
-        remark: this.data.remark,
-      };
-      // 调用真实下单接口
+      let orderPayload = {};
+      if(this.data.type === 'cart'){
+        const cartItems = this.data.orderItems.map(item => ({
+          id: item.id,
+          quantity: item.quantity
+        }));
+        orderPayload = {
+          cartItems,
+          addressId: this.data.address.addressId,
+          remark: this.data.remark,
+        };
+      }else{
+        orderPayload = {
+          productId: this.data.orderItems[0].productId,
+          addressId: this.data.address.addressId,
+          quantity: this.data.orderItems[0].quantity,
+          remark: this.data.remark,
+        };
+      }
+
+      // 调用下单接口
       const res = await createOrders(orderPayload);
       console.log('下单接口',res);
       if (res && res.success) {
@@ -254,16 +248,6 @@ Page({
     } finally {
       this.setData({ loading: false });
     }
-  },
-
-  // 模拟提交订单到服务器
-  submitOrderToServer(orderData) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        console.log('订单提交成功:', orderData);
-        resolve();
-      }, 1500);
-    });
   },
 
   // 生成订单号

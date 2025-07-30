@@ -5,7 +5,9 @@
     "pages/store/index",
     "pages/login/index",
     "pages/login/guide",
-    "pages/usercenter/index",
+    "pages/user/index",
+    "pages/user/address/list/index",
+    "pages/user/address/edit/index",
     "pages/comments/index",
     "pages/comments/addComment/index",
     "pages/order/index",
@@ -17,16 +19,6 @@
     "pages/store/toOrder/index"
   ],
   "subpackages": [
-    {
-      "root": "pages/user",
-      "name": "user",
-      "pages": [
-        "person-info/index",
-        "address/list/index",
-        "address/edit/index",
-        "name-edit/index"
-      ]
-    },
     {
       "root": "pages/organization",
       "name": "organization",
@@ -79,7 +71,7 @@
         "text": "订单"
       },
       {
-        "pagePath": "pages/usercenter/index",
+        "pagePath": "pages/user/index",
         "text": "我的"
       }
     ]

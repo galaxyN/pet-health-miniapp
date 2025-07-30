@@ -1,4 +1,5 @@
 import { config } from '../../config/index';
+import { request } from '../../utils/request';
 
 /** 获取收货地址 */
 function mockFetchDeliveryAddress(id) {
@@ -9,14 +10,11 @@ function mockFetchDeliveryAddress(id) {
 }
 
 /** 获取收货地址 */
-export function fetchDeliveryAddress(id = 0) {
-  if (config.useMock) {
-    return mockFetchDeliveryAddress(id);
-  }
-
-  return new Promise((resolve) => {
-    resolve('real api');
-  });
+export function fetchDeliveryAddress(userId) {
+  return request({
+    url: `/api/address/user/${userId}`,
+    method: 'get'
+  })
 }
 
 /** 获取收货地址列表 */

@@ -122,6 +122,25 @@ const phoneRegCheck = (phone) => {
   return phoneRegExp.test(phone);
 };
 
+/**
+ * 格式化日期时间
+ * @param {Date} date 日期对象
+ * @returns {string} 格式化后的字符串，格式为: YYYY年MM月DD日 HH:mm
+ */
+const formatDateTime = (date) => {
+  if (!(date instanceof Date)) {
+    return '';
+  }
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+
+  return `${year}年${month}月${day}日 ${hours}:${minutes}`;
+};
+
+
 const setToken = (token) => {
   wx.setStorageSync('token', token);
 };
@@ -145,4 +164,5 @@ module.exports = {
   setToken,
   getToken,
   removeToken,
+  formatDateTime
 };

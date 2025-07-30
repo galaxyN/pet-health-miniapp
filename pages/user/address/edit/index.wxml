@@ -18,10 +18,10 @@
             slot="note"
             t-class="field-text"
             borderless
-            data-item="name"
+            data-item="receiverName"
             maxlength="20"
             type="text"
-            value="{{locationState.name}}"
+            value="{{locationState.receiverName}}"
             placeholder="您的姓名"
             bind:change="onInputValue"
           />
@@ -33,7 +33,7 @@
             t-class="field-text"
             borderless
             type="number"
-            value="{{locationState.phone}}"
+            value="{{locationState.receiverPhone}}"
             maxlength="11"
             placeholder="联系您的手机号"
             bind:change="onInputValue"
@@ -59,7 +59,7 @@
             <t-textarea
               slot="note"
               type="text"
-              value="{{locationState.detailAddress}}"
+              value="{{locationState.detailedAddress}}"
               placeholder="门牌号等(例如:10栋1001号)"
               autosize
               bind:change="onInputValue"

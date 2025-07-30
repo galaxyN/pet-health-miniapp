@@ -1,5 +1,5 @@
 
-const { updateUserInfo: updateUserInfoService } = require('../../services/usercenter/updateUserInfo');
+const { updateUserInfo: updateUserInfoService } = require('../../services/usercenter/user');
 
 Page({
   data: {
@@ -132,6 +132,12 @@ Page({
         icon: 'none'
       });
     }
+  },
+
+  goToAddress() {
+    wx.navigateTo({
+      url: './address/list/index',
+    });
   },
 
   // 更新用户信息接口

@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { fetchDeliveryAddressList } from '../../../../services/address/fetchAddress';
+import { getAddressList } from '../../../../services/address/address';
 import Toast from 'tdesign-miniprogram/toast/index';
 import { resolveAddress, rejectAddress } from '../../../../services/address/list';
 import { getAddressPromise } from '../../../../services/address/edit';
@@ -37,7 +37,10 @@ Page({
   },
   getAddressList() {
     const { id } = this.data;
-    fetchDeliveryAddressList().then((addressList) => {
+    const userId = wx.getStorageSync('userInfo').id;
+    getAddressList(userId).then((res) => {
+      console.log('获取地址列表', res);
+      const addressList = res.data;
       addressList.forEach((address) => {
         if (address.id === id) {
           address.checked = true;
@@ -110,10 +113,11 @@ Page({
     });
   },
   editAddressHandle({ detail }) {
+    // console.log('editAddressHandle detail', detail);
     this.waitForNewAddress();
-
-    const { id } = detail || {};
-    wx.navigateTo({ url: `/pages/user/address/edit/index?id=${id}` });
+    const { addressId } = detail || {};
+    console.log('编辑地址', addressId);
+    wx.navigateTo({ url: `/pages/user/address/edit/index?id=${addressId}` });
   },
   selectHandle({ detail }) {
     if (this.selectMode) {

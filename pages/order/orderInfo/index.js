@@ -1,10 +1,12 @@
-// pages/cart/orderInfo/index.js
+import { formatDateTime } from '../../../utils/util';
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    addressList: [],
     order: {
       id: 1,
       name: '法米娜成犬粮羊肉南瓜7kg通用博美马尔济斯',
@@ -25,7 +27,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    const eventChannel = this.getOpenerEventChannel();
+    eventChannel.on('getOrderInfo', (data) => {
+      console.log('获取订单详情',data);
+      // 处理时间格式
+      if (data.order.createdAt) {
+        const date = new Date(data.order.createdAt);
+        data.order.createdAt = formatDateTime(date);
+      }
+      const address = app.globalData.addressList.find(item => item.id === data.order.addressId);
+      if (address) {
+        data.order.address = address;
+      }
+      this.setData({
+        order: data.order
+      })
+    })
   },
 
   /**
@@ -39,7 +56,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
   },
 
   /**
@@ -49,31 +65,4 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })

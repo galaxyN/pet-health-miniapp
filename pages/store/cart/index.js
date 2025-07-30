@@ -1,20 +1,8 @@
+import { getCartList } from '../../../services/shopping/cart';
+import { createOrders } from '../../../services/shopping/order';
 Page({
   data: {
     cartList: [
-      {
-        id: 1,
-        image: 'http://117.72.219.186:8080/image/store/food/05.png',
-        name: '法米娜成犬粮羊肉南瓜7kg通用博美马尔济斯',
-        price: 95,
-        quantity: 1
-      },
-      {
-        id: 2,
-        image: 'http://117.72.219.186:8080/image/store/food/06.png',
-        name: 'wurendao无人岛猫窝四半封闭式藤编猫窝狗窝',
-        price: 374,
-        quantity: 1
-      }
     ],
     totalPrice: 0,
     id: {
@@ -31,14 +19,36 @@ Page({
   },
 
   onLoad() {
-    this.calculateTotal();
+  },
+  onShow() {
+    this.getCartList();
   },
 
   calculateTotal() {
+    // 处理JavaScript浮点数精度问题
     const total = this.data.cartList.reduce((sum, item) => {
-      return sum + (item.price * item.quantity);
-    }, 0);
-    this.setData({ totalPrice: total });
+      // 将价格转为整数计算(乘以100)，避免小数计算精度问题
+      const price = Math.round(item.product.price * 100);
+      const subtotal = price * item.quantity;
+      return sum + subtotal;
+    }, 0) / 100; // 最后除以100还原小数
+    this.setData({ 
+      totalPrice: parseFloat(total) // 保留两位小数
+    });
+  },
+
+  /** 获取购物车列表 */
+  getCartList() {
+    getCartList().then(res => {
+      if(res.success){
+        console.log(res);
+        this.setData({
+          cartList: res.data
+        },() => {
+          this.calculateTotal();
+        });
+      }
+    })
   },
 
   increaseQuantity(e) {
@@ -73,8 +83,19 @@ Page({
   },
 
   checkout() {
+    const cartList = this.data.cartList.filter(item => item.quantity > 0);
+    if(cartList.length === 0){
+      wx.showToast({
+        title: '请选择商品',
+        icon: 'none'
+      });
+      return;
+    }
     wx.navigateTo({
-      url: '/pages/store/toOrder/index',
+      url: '/pages/store/toOrder/index?type=cart',
+      success(res){
+        res.eventChannel.emit('cartInfo', { cartList })
+      }
     });
   }
 });
