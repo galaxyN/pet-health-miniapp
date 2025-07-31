@@ -19,9 +19,9 @@ Page({
 
   // 预约按钮点击事件
   handleAppointment: function() {
-    const { id, type } = this.data;
+    const { organization, type } = this.data;
     wx.navigateTo({
-      url: `../appointment/index?id=${id}&type=${type}`
+      url: `../appointment/index?id=${organization.id}&type=${type}`
     })
   }
 })

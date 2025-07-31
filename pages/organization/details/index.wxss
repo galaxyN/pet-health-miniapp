@@ -2,6 +2,8 @@
 .container {
   padding-bottom: 80px;
   background-color: #f8f8f8;
+  height: 100vh;
+  box-sizing: border-box;
 }
 
 /* 头部信息 */

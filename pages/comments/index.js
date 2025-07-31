@@ -1,50 +1,36 @@
 // pages/comments/index.js
+import { getCommentList } from '../../services/comments/comments';
 Page({
   data: {
     commentList: [
-      {
-        id: '1',
-        userName: 'George',
-        commentTime: '2025年9月3日',
-        commentScore: 5,
-        commentContent: '刚开始从小红书看到就过来看看，狗狗护理多而且都很有特色，不知道是不是店品里自带的狗狗，都很乖。好像很干净主要是灯光好所以看着有特点，洗护类容还不错试过，但是有点小贵。'
-      },
-      {
-        id: '2',
-        userName: 'Peggy',
-        commentTime: '2025年8月20日',
-        commentScore: 5,
-        commentContent: '公司旁边新开的店，下班就能来宠物回诊，而且交通很方便！！你的宠物太可爱啦'
-      }
+      // {
+      //   id: '1',
+      //   userName: 'George',
+      //   commentTime: '2025年9月3日',
+      //   commentScore: 5,
+      //   commentContent: '刚开始从小红书看到就过来看看，狗狗护理多而且都很有特色，不知道是不是店品里自带的狗狗，都很乖。好像很干净主要是灯光好所以看着有特点，洗护类容还不错试过，但是有点小贵。'
+      // },
     ],
     scoreList: [
-      {
-        score: 5,
-        count: 124
-      },
-      {
-        score: 4,
-        count: 87
-      },
-      {
-        score: 3,
-        count: 56
-      },
-      {
-        score: 2,
-        count: 34
-      },
-      {
-        score: 1,
-        count: 12
-      }
+      { score: 5,count: 124},
+      { score: 4,count: 87},
+      { score: 4,count: 87},
+      { score: 4,count: 87},
+      { score: 4,count: 87}
     ],
-    total: 313,
-    activeTab: '最新'
+    rating: 0,
+    total: 0,
+    activeTab: '最新',
+    id: null,
+    type: ''
   },
 
-  onLoad() {
+  onLoad(options) {
     // 页面加载时的初始化逻辑
+    console.log('options',options);
+    const { type, id,rating } = options;
+    this.setData({ type, id: Number(id),rating: Number(rating) });
+    this.getCommentList();
   },
 
   // 返回上一页
@@ -62,10 +48,25 @@ Page({
     });
   },
 
+  getCommentList(){
+    getCommentList({
+      organizationId: this.data.id
+    }).then(res => {
+      if(res.success){
+        console.log('commentList',res);
+        const list = res.data.items;
+        this.setData({
+          commentList: list
+        })
+      }
+    })
+  },
+
   // 写评论
   writeComment() {
+    const { id,type } = this.data;
     wx.navigateTo({
-      url: './addComment/index'
+      url: `./addComment/index?id=${id}&type=${type}`
     })
   }
 });

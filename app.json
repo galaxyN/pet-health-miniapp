@@ -22,13 +22,7 @@
     {
       "root": "pages/organization",
       "name": "organization",
-      "pages": [
-        "list/index",
-        "details/index",
-        "comments/index",
-        "comments/create/index",
-        "appointment/index"
-      ]
+      "pages": ["list/index", "details/index", "appointment/index"]
     },
     {
       "root": "pages/coupon",
@@ -42,9 +36,7 @@
     {
       "root": "pages/promotion",
       "name": "promotion",
-      "pages": [
-        "promotion-detail/index"
-      ]
+      "pages": ["promotion-detail/index"]
     }
   ],
   "tabBar": {
@@ -76,9 +68,7 @@
       }
     ]
   },
-  "requiredPrivateInfos": [
-    "chooseAddress"
-  ],
+  "requiredPrivateInfos": ["chooseAddress"],
   "lazyCodeLoading": "requiredComponents",
   "usingComponents": {
     "t-button": "tdesign-miniprogram/button/button"

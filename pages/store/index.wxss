@@ -1,3 +1,6 @@
+page{
+  overflow: hidden;
+}
 .custom-capsule {
   width: 100%;
   display: flex;
@@ -16,7 +19,8 @@
 .market-container {
   background-color: #f7f7f7;
   box-sizing: border-box;
-  overflow-y: hidden;
+  height: calc(100vh - 40px);
+  overflow: hidden;
 }
 
 /* 搜索栏 */
@@ -87,8 +91,12 @@
     justify-content: space-between;
     gap: 20rpx;
     padding: 24rpx 30rpx;
-    height: 55vh;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    /* height: 65vh; */
+    height: calc(100% - 265px);
     overflow-y: auto;
+    align-items: flex-start;
 }
 
 .product-item {

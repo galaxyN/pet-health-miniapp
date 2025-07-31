@@ -70,6 +70,10 @@ Component({
                 dateArray: updatedDays,
                 selectedDay: day
             });
+            const { year, month } = this.data
+            const date = dayjs().year(year).month(month - 1).date(day).format('YYYY-MM-DD')
+            console.log('date',date);
+            this.triggerEvent('getDate', date)
         },
 
         updateCalendar: function() {  

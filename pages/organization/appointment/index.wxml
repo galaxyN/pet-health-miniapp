@@ -1,35 +1,29 @@
 <view class="container">
   <!-- 日期选择 -->
-  <calendar></calendar>
+  <calendar bind:getDate="getDate"></calendar>
   <!-- 时间选择 -->
   <view class="time-section">
     <text class="section-title">时间</text>
     <view class="time-slots">
       <block wx:for="{{timeSlots}}" wx:key="time">
-        <view 
-          class="slot {{selectedTime === item ? 'selected' : ''}}" 
-          bindtap="selectTime" 
-          data-time="{{item}}"
-        >
+        <view class="slot {{selectedTime === item ? 'selected' : ''}}" bindtap="selectTime" data-time="{{item}}">
           <text>{{item}}</text>
         </view>
       </block>
     </view>
   </view>
-
   <!-- 宠物选择 -->
   <view class="pet-section">
     <text class="section-title">选择你的宠物</text>
     <view class="pet-selector" bindtap="selectPet">
-      <image class="pet-avatar" src="{{currentPet.avatar}}" />
+      <image class="pet-avatar" src="{{currentPet.avatarUrl}}" />
       <view class="pet-info">
         <text class="pet-name">{{currentPet.name}}</text>
-        <text class="pet-breed">{{currentPet.breed}}</text>
+        <!-- <text class="pet-breed">{{currentPet.breed}}</text> -->
       </view>
       <image class="arrow" src="/images/arrow-down.png" />
     </view>
   </view>
-
   <!-- 确认按钮 -->
   <view class="footer">
     <button class="confirm-btn" bindtap="confirmAppointment">确认</button>

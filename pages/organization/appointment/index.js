@@ -1,3 +1,5 @@
+import { getPetList } from '../../../services/pet/pet'
+import { appointments } from '../../../services/organization/appointment'
 Page({
   data: {
     id: null,
@@ -26,18 +28,11 @@ Page({
     ],
     selectedTime: '',
     currentPet: {
-      avatar: '/images/pet-avatar.jpg',
-      name: 'Coni',
-      breed: '马尔济斯'
+      avatar: '',
+      name: '',
+      breed: ''
     },
-    pets: [
-      {
-        avatar: '/images/pet-avatar.jpg',
-        name: 'Coni',
-        breed: '马尔济斯'
-      },
-      // 其他宠物...
-    ]
+    pets: []
   },
 
   onLoad: function(options) {
@@ -49,6 +44,7 @@ Page({
     if(type === 'beauty') orgName = '美容机构';
     this.setData({ id, type, orgName });
     this.initCalendar();
+    this.getPetList();
   },
 
   initCalendar: function() {
@@ -61,22 +57,52 @@ Page({
     wx.navigateBack();
   },
 
+  getPetList(){
+    const userInfo = wx.getStorageSync('userInfo');
+    const { id } = userInfo;
+    getPetList(+id).then(res => {
+      if(res.success){
+        const list = res.data;
+        console.log('list',list);
+        const pets = list.map(item=>{
+          return {
+            id: item.id,
+            name: item.petName,
+            type: item.petType,
+            breed: item.breed
+          }
+        })
+        if(pets.length > 0){
+          this.setData({
+            pets: pets
+          })
+        }
+      }
+    }).catch(err=>{
+      console.error(err);
+    })
+  },
+
+  getDate(e){
+    console.log(e);
+    const date = e.detail;
+    this.setData({
+      currentDate: date
+    })
+  },
+
   // 选择日期
   selectDate: function(e) {
     const date = e.currentTarget.dataset.date;
     if (date) {
-      this.setData({
-        currentDate: date
-      });
+      this.setData({ currentDate: date });
     }
   },
 
   // 选择时间
   selectTime: function(e) {
     const time = e.currentTarget.dataset.time;
-    this.setData({
-      selectedTime: time
-    });
+    this.setData({ selectedTime: time });
   },
 
   // 选择宠物
@@ -102,18 +128,28 @@ Page({
     }
     wx.showLoading({ title: '预约中...' });
     // 预留API调用
+    const { id,type,currentPet,currentDate,selectedTime } = this.data
     const params = {
-      orgId: this.data.id,
-      orgType: this.data.type,
-      pet: this.data.currentPet,
-      date: this.data.currentDate,
-      time: this.data.selectedTime
+      serviceId: id,
+      serviceType: type,
+      petId: currentPet.id,
+      serviceCategory: '',
+      appointmentTime: currentDate+' '+selectedTime,
+      notes: ''
     };
-    // TODO: 调用后端API提交预约 params
-    setTimeout(() => {
+    console.log('params',params);
+    appointments(params).then(res => {
+      console.log(res);
       wx.hideLoading();
-      wx.showToast({ title: '预约成功' });
-      setTimeout(() => { wx.navigateBack(); }, 1500);
-    }, 1000);
+      if(res.success){
+        setTimeout(() => {
+          wx.showToast({ title: '预约成功' });
+          setTimeout(() => { wx.navigateBack(); }, 1500);
+        }, 1000);
+      }
+    }).catch(err => {
+      wx.hideLoading();
+      console.error(err);
+    })
   }
 })

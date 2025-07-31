@@ -9,7 +9,7 @@
     <block wx:for="{{filteredOrganizations}}" wx:key="id">
       <view class="organization-card">
         <image class="organization-icon" src="{{item.imageUrl}}" />
-        <view class="organization-info" bind:tap="toComments">
+        <view class="organization-info" data-item="{{item}}" bind:tap="toComments">
           <text class="organization-name">{{item.name}}</text>
           <view class="rating">
             <block wx:for="{{item.stars}}" wx:key="*this">

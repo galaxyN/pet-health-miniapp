@@ -13,8 +13,16 @@
 }
 
 .form-input{
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form-input .char-count{
+  width: 100%;
+  text-align: right;
+  padding-right: 120rpx;
 }
 
 .form-input textarea{

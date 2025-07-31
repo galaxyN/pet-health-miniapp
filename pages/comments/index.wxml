@@ -12,7 +12,7 @@
   <!-- 评分概览 -->
   <view class="score-overview">
     <view class="score-main">
-      <view class="score-value">4.6</view>
+      <view class="score-value">{{rating}}</view>
       <view class="score-bars">
         <block wx:for="{{scoreList}}" wx:key="index">
           <view class="score-bar-box">

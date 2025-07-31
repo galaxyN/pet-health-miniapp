@@ -13,14 +13,6 @@ Page({
       //   stars: [1, 1, 1, 1, 0.5],
       //   type: 'hospital'
       // },
-      // {
-      //   id: 2,
-      //   name: "祥兽宠物医院（海月店）",
-      //   icon: "../resource/organization/02.jpg",
-      //   rating: 4.6,
-      //   stars: [1, 1, 1, 1, 0],
-      //   type: 'hospital'
-      // },
     ],
     filteredOrganizations: []
   },
@@ -29,7 +21,7 @@ Page({
     // 页面加载时逻辑
     const { type } = options;
     let title = '宠物医院';
-    if(type==='beauty'){
+    if(type==='grooming'){
       title = '美容机构';
     }
     wx.setNavigationBarTitle({ title });
@@ -101,9 +93,12 @@ Page({
     });
   },
 
-  toComments(){
+  toComments(e){
+    const { type } = this.data;
+    const item = e.currentTarget.dataset.item;
+    const { id,rating } = item;
     wx.navigateTo({
-      url: '../../comments/index'
+      url: `/pages/comments/index?type=${type}&id=${id}&rating=${rating}`
     });
   }
 })

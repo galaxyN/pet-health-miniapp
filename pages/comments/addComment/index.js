@@ -1,18 +1,25 @@
 // pages/comments/addComment/index.js
+import { addComment } from '../../../services/comments/comments';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    rating: 2
+    id: null,
+    type: '',
+    rating: 2,
+    commentContent: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.setData({
+      id: options.id,
+      type: options.type
+    })
   },
 
   /**
@@ -46,6 +53,49 @@ Page({
   onRateChange(e){
     this.setData({
       rating: e.detail.value
+    })
+  },
+
+  onSubmit(){
+    const { rating, commentContent } = this.data;
+    if(rating === 0){
+      wx.showToast({
+        title: '请选择评分',
+        icon: 'none'
+      })
+      return;
+    }
+    if(commentContent.length === 0){
+      wx.showToast({
+        title: '请输入评论内容',
+        icon: 'none'
+      })
+      return;
+    }
+    if(commentContent.length > 200){
+      wx.showToast({
+        title: '评论内容不能超过200个字符',
+        icon: 'none'
+      })
+      return;
+    }
+    addComment({
+      organizationId: this.data.id,
+      organizationType: this.data.type,
+      rating,
+      content: commentContent
+    }).then(res => {
+      if(res.success){
+        wx.showToast({
+          title: '评论成功',
+          icon: 'success'
+        })
+        setTimeout(() => {
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 1000)
+      }
     })
   }
 })

@@ -2,9 +2,9 @@ import { getPetList } from '../../services/pet/pet';
 Page({
   data: {
     petInfo: {
-      name: 'Coni',
-      desc: '马尔济斯',
-      age: '4岁6个月',
+      name: '',
+      desc: '',
+      age: '',
       image: ''
     },
     petTypeMap:{
@@ -71,7 +71,7 @@ Page({
   goToBeauty: function() {
     // 跳转美容预约
     wx.navigateTo({
-      url: '/pages/organization/list/index?type=beauty'
+      url: '/pages/organization/list/index?type=grooming'
     });
   },
 
