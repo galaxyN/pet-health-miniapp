@@ -96,6 +96,15 @@ Page({
           })
         }, 1000)
       }
+    }).catch(err => {
+      console.error('err',err);
+      wx.showModal({
+        title: '提示',
+        content: err.message,
+        showCancel: false,
+        confirmText: '确定',
+        confirmColor: '#576B95',
+      })
     })
   }
 })

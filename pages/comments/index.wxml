@@ -33,14 +33,14 @@
       <view class="comment-item">
         <view class="comment-header">
           <view class="user-info">
-            <view class="user-name">{{item.userName}}</view>
-            <t-rate value="{{item.commentScore}}" size="12" gap="2" color="#FFD01E" variant="filled" readonly />
+            <view class="user-name">{{item.user.nickname}}</view>
+            <t-rate value="{{item.rating}}" size="12" gap="2" color="#FFD01E" variant="filled" readonly />
           </view>
           <view class="comment-rating">
             <view class="comment-time">{{item.commentTime}}</view>
           </view>
         </view>
-        <view class="comment-content">{{item.commentContent}}</view>
+        <view class="comment-content">{{item.content}}</view>
       </view>
     </block>
   </view>

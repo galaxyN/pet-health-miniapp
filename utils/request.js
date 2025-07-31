@@ -42,11 +42,11 @@ export function request(params) {
               }
             })
           }
-          reject(res)
+          reject(res.data)
         }
       },
       fail: (err) => {
-        reject(err)
+        reject(err.data)
       }
     })
       

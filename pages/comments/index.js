@@ -30,9 +30,10 @@ Page({
     console.log('options',options);
     const { type, id,rating } = options;
     this.setData({ type, id: Number(id),rating: Number(rating) });
+  },
+  onShow(){
     this.getCommentList();
   },
-
   // 返回上一页
   goBack() {
     wx.navigateBack({
@@ -50,7 +51,8 @@ Page({
 
   getCommentList(){
     getCommentList({
-      organizationId: this.data.id
+      organizationId: this.data.id,
+      organizationType: this.data.type
     }).then(res => {
       if(res.success){
         console.log('commentList',res);
