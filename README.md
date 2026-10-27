@@ -1,127 +1,123 @@
-<p align="center">
-  <a href="https://tdesign.tencent.com/" target="_blank">
-    <img alt="TDesign Logo" width="200" src="https://tdesign.gtimg.com/site/TDesign.png">
-  </a>
-</p>
+# 宠物健康小程序（pet-health-miniapp）
 
-<p align="center">
-  <a href="https://img.shields.io/github/stars/Tencent/tdesign-miniprogram-starter-retail">
-    <img src="https://img.shields.io/github/stars/Tencent/tdesign-miniprogram-starter-retail" alt="License">
-  </a>  
-  <a href="https://github.com/Tencent/tdesign-miniprogram-starter-retail/issues">
-    <img src="https://img.shields.io/github/issues/Tencent/tdesign-miniprogram-starter-retail" alt="License">
-  </a>  
-  <a href="https://github.com/Tencent/tdesign-miniprogram-starter-retail/LICENSE">
-    <img src="https://img.shields.io/github/license/Tencent/tdesign-miniprogram-starter-retail" alt="License">
-  </a>
-  <a href="https://www.npmjs.com/package/tdesign-miniprogram">
-    <img src="https://img.shields.io/npm/v/tdesign-miniprogram.svg?sanitize=true" alt="Version">
-  </a>
-  <a href="https://www.npmjs.com/package/tdesign-miniprogram">
-    <img src="https://img.shields.io/npm/dw/tdesign-miniprogram" alt="Downloads">
-  </a>
-</p>
+一款面向宠物主人的健康管理微信小程序，涵盖**宠物档案管理、宠物用品商城、宠物医院/美容机构预约、订单管理、用户中心**等核心功能。基于 [TDesign 微信小程序组件库](https://github.com/Tencent/tdesign-miniprogram) 与 TDesign 零售模板脚手架搭建，采用原生 JavaScript + WXSS 开发。
 
-# TDesign 零售行业模版示例小程序
+## :high_brightness: 功能概览
 
-TDesign 零售模版示例小程序采用 [TDesign 企业级设计体系小程序解决方案](https://tdesign.tencent.com/miniprogram/overview) 进行搭建，依赖 [TDesign 微信小程序组件库](https://github.com/Tencent/tdesign-miniprogram)，涵盖完整的基本零售场景需求。
+| 模块 | 说明 |
+| --- | --- |
+| 🏠 首页 | 轮播图、搜索、宠物信息卡片展示、商品推荐列表 |
+| 🐾 宠物管理 | 宠物档案列表，支持添加、编辑、删除宠物（名称/品种/年龄/体重/头像等） |
+| 🛍️ 宠物商城 | 商品分类、商品列表搜索、商品详情、规格选择、购物车、确认下单 |
+| 🏥 机构服务 | 宠物医院、美容机构列表与详情，支持按类型筛选、日期时段预约 |
+| 💬 评价系统 | 机构评价列表查看与发表评价 |
+| 📦 订单中心 | 订单列表、订单详情、订单状态展示 |
+| 👤 用户中心 | 微信头像昵称登录、注册、个人资料维护、收货地址管理 |
 
-## :high_brightness: 预览
+底部导航采用自定义 tabBar，包含：**首页 / 商城 / 宠物 / 订单 / 我的** 五个入口。
 
-<p>请使用微信扫描以下二维码：</p>
+## :pushpin: 技术栈
 
- <img src="https://we-retail-static-1300977798.cos.ap-guangzhou.myqcloud.com/retail-mp/common/qrcode.jpeg" width = "200" height = "200" alt="模版小程序二维码" align=center />
+- **框架**：微信小程序原生框架（JavaScript + WXML + WXSS）
+- **UI 组件库**：[tdesign-miniprogram](https://www.npmjs.com/package/tdesign-miniprogram) `1.9.5`
+- **工具库**：`dayjs`（时间格式化）、`tslib`
+- **工程化**：ESLint + Prettier + Husky + lint-staged + Commitlint + Commitizen（Angular 规范提交）
+- **后端对接**：`wx.request` 统一封装（`utils/request.js`），自动携带 Bearer Token，401 失效自动引导重新登录
 
-## :pushpin: 项目介绍
-
-### 1. 业务介绍
-
-零售行业模版小程序是个经典的单店版电商小程序，涵盖了电商的黄金链路流程，从商品->购物车->结算->订单等。小程序总共包含 28 个完整的页面，涵盖首页，商品详情页，个人中心，售后流程等基础页面。采用 mock 数据进行展示，提供了完整的零售商品展示、交易与售后流程。页面详情：
-
-<img src="https://tdesign.gtimg.com/miniprogram/template/retail/tdesign-starter-readmeV1.png" width = "650" height = "900" alt="模版小程序页面详情" align=center />
-
-主要页面截图如下：
-
-<p align="center">
-    <img alt="example-home" width="200" src="https://tdesign.gtimg.com/miniprogram/template/retail/example/v1/home.png" />
-    <img alt="example-sort" width="200" src="https://tdesign.gtimg.com/miniprogram/template/retail/example/v2/sort.png" />
-    <img alt="example-cart" width="200" src="https://tdesign.gtimg.com/miniprogram/template/retail/example/v1/cart.png" />
-    <img alt="example-user-center" width="200" src="https://tdesign.gtimg.com/miniprogram/template/retail/example/v1/user-center.png" />
-    <img alt="example-goods-detail" width="200" src="https://tdesign.gtimg.com/miniprogram/template/retail/example/v1/goods-detail.png" />
-    <img alt="example-pay" width="200" src="https://tdesign.gtimg.com/miniprogram/template/retail/example/v1/pay.png" />
-    <img alt="example-order" width="200" src="https://tdesign.gtimg.com/miniprogram/template/retail/example/v1/order.png" />
-    <img alt="example-order-detail" width="200" src="https://tdesign.gtimg.com/miniprogram/template/retail/example/v2/order.png" />
-</p>
-
-### 2. 项目构成
-
-零售行业模版小程序采用基础的 JavaScript + WXSS + ESLint 进行构建，降低了使用门槛。
-
-项目目录结构如下：
+## :open_file_folder: 项目结构
 
 ```
-|-- tdesign-miniprogram-starter
-    |-- README.md
-    |-- app.js
-    |-- app.json
-    |-- app.wxss
-    |-- components	//	公共组件库
-    |-- config	//	基础配置
-    |-- custom-tab-bar	//	自定义 tabbar
-    |-- model	//	mock 数据
+|-- pet-health-miniapp
+    |-- app.js                  // 应用入口，初始化地址簿等全局数据
+    |-- app.json                // 全局配置（页面路由、tabBar、分包）
+    |-- common                  // 公共逻辑（小程序更新管理器）
+    |-- components              // 公共组件（goods-list、goods-card、price、filter、swipeout、webp-image、load-more 等）
+    |-- config                  // 全局配置（useMock 开关、CDN、地区数据）
+    |-- custom-tab-bar          // 自定义底部导航栏
+    |-- images                  // 本地静态图片资源
+    |-- model                   // mock 数据源（useMock 时使用，可作为后续数据适配层）
     |-- pages
-    |   |-- cart	//	购物车相关页面
-    |   |-- coupon	//	优惠券相关页面
-    |   |-- goods	//	商品相关页面
-    |   |-- home	//	首页
-    |   |-- order	//	订单售后相关页面
-    |   |-- promotion-detail	//	营销活动页面
-    |   |-- user	//	个人中心及收货地址相关页面
-    |-- services	//	请求接口
-    |-- style	//	公共样式与iconfont
-    |-- utils	//	工具库
+    |   |-- home                // 首页
+    |   |-- pet                 // 宠物档案管理（列表、编辑）
+    |   |-- store               // 宠物商城（列表、商品详情、购物车、确认订单）
+    |   |-- order               // 订单列表与详情
+    |   |-- login               // 登录、注册、引导页
+    |   |-- user                // 个人中心、收货地址管理
+    |   |-- comments            // 机构评价与发表评价
+    |   |-- organization        // 分包：宠物医院/美容机构列表、详情、预约
+    |   |-- coupon              // 分包：优惠券列表、详情、活动商品
+    |   |-- promotion           // 分包：营销活动页
+    |-- services                // 接口请求层（auth、pet、shopping、organization、comments、order、address 等）
+    |-- style                   // 公共样式与 iconfont
+    |-- utils                   // 工具库（request 封装、baseConfig、util、地址解析等）
 ```
 
-### 3. 数据模拟
+## :electric_plug: 后端 API
 
-零售小程序采用真实的接口数据，模拟后端返回逻辑，在小程序展示完整的购物场景与购物体验逻辑。
+后端服务地址配置在 `utils/baseConfig.js`：
 
-### 4. 添加新页面
+```js
+const baseUrl = 'http://117.72.219.186:7001';
+```
 
-1. 在 `pages `目录下创建对应的页面文件夹
-2. 在 `app.json` 文件中的 ` "pages"` 数组中加上页面路径
-3. [可选] 在 `project.config.json` 文件的 `"miniprogram-list"` 下添加页面配置
+主要接口模块（均以 `/api` 为前缀）：
 
-## :hammer: 构建运行
+| 模块 | 接口示例 |
+| --- | --- |
+| 认证 | `POST /api/auth/wxLogin`、`POST /api/auth/register`、`GET /api/account/profile` |
+| 宠物档案 | `GET /api/pets/user/{id}`、`POST /api/pets/create`、`PUT/DELETE /api/pets/{id}` |
+| 商城 | `GET /api/shopping/categories`、`GET /api/shopping/products`、`/api/shopping/cart`、`/api/shopping/orders` |
+| 机构服务 | `GET /api/orgs`、`POST /api/appointments` |
+| 评价 | `GET/POST /api/organization-reviews` |
+| 地址 | 地址簿增删改查接口 |
 
-1. `npm install`
-2. 小程序开发工具中引入工程
-3. 构建 npm
+请求封装说明（`utils/request.js`）：
 
-## :art: 代码风格控制
+- 自动从本地存储读取 token，除登录接口外统一附加 `Authorization: Bearer <token>` 请求头；
+- HTTP 2xx 且业务码 `code === 200` 时视为成功；
+- 业务码 `401` 时弹窗提示登录失效并跳转登录页。
 
-`eslint` `prettier`
+## :hammer: 快速开始
 
-## :iphone: 基础库版本
+1. 克隆本项目
 
-最低基础库版本`^2.6.5`
+   ```bash
+   git clone <repo-url>
+   cd pet-health-miniapp
+   ```
 
-## :dart: 反馈
+2. 安装依赖
 
-企业微信群
-TDesign 团队会及时在企业微信大群中同步发布版本、问题修复信息，也会有一些关于组件库建设的讨论，欢迎微信或企业微信扫码入群交流：
+   ```bash
+   npm install
+   ```
 
-<img src="https://oteam-tdesign-1258344706.cos.ap-guangzhou.myqcloud.com/site/doc/TDesign%20IM.png" width = "200" height = "200" alt="模版小程序页面详情" align=center />
+3. 使用微信开发者工具导入项目根目录
 
-邮件联系：tdesign@tencent.com
+4. 在开发者工具中执行 **构建 npm**（工具栏 → 构建 npm）
 
-## :link: TDesign 其他技术栈实现
+5. 在 `utils/baseConfig.js` 中配置后端服务地址，即可运行
 
-- 移动端 小程序 实现：[mobile-miniprogram](https://github.com/Tencent/tdesign-miniprogram)
-- 桌面端 Vue 2 实现：[web-vue](https://github.com/Tencent/tdesign-vue)
-- 桌面端 Vue 3 实现：[web-vue-next](https://github.com/Tencent/tdesign-vue-next)
-- 桌面端 React 实现：[web-react](https://github.com/Tencent/tdesign-react)
+### 常用脚本
+
+```bash
+npm run lint        # ESLint 检查并自动修复
+npm run check       # 执行自定义 ESLint 校验脚本
+npm run changelog   # 按 Angular 规范生成 CHANGELOG
+npx cz              # Commitizen 交互式规范化提交
+```
+
+## :art: 代码风格
+
+- `ESLint` + `Prettier` 统一代码风格，`husky` + `lint-staged` 在提交前自动格式化；
+- 提交信息通过 `commitlint` 校验，需符合 [Conventional Commits](https://www.conventionalcommits.org/zh-hans/) 规范（如 `feat:`、`fix:`）。
+
+## :page_facing_up: 数据模拟说明
+
+项目保留了模板的 mock 能力：`config/index.js` 中的 `useMock` 开关可控制 `services` 层返回 mock 数据（来自 `model/` 目录）或真实接口数据。接入真实 API 后，`model/` 可反转为数据适配层，将后端数据转换为既有数据结构，业务层无需改动。详见 [mock.md](./mock.md)。
+
+> 当前大部分核心模块（认证、宠物、商城、机构、评价、预约）已接入真实后端接口。
 
 ## :page_with_curl: 开源协议
 
-TDesign 遵循 [MIT 协议](https://github.com/Tencent/tdesign-miniprogram-starter-retail/LICENSE)。
+[MIT](./LICENSE)
